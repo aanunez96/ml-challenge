@@ -1,0 +1,97 @@
+[
+  {
+    "id": "test-product-1",
+    "title": "Test Product One",
+    "description": "First test product for unit testing",
+    "images": [
+      "https://example.com/image1.jpg"
+    ],
+    "price": {
+      "amount": 99.99,
+      "currency": "USD"
+    },
+    "paymentMethods": [
+      {
+        "label": "Credit Card"
+      }
+    ],
+    "seller": {
+      "id": "seller-1",
+      "name": "Test Seller",
+      "rating": 4.5,
+      "sales": 100,
+      "isOfficial": false
+    },
+    "stock": 50,
+    "rating": {
+      "average": 4.2,
+      "count": 25
+    },
+    "flags": {
+      "full": true,
+      "freeShipping": true
+    }
+  },
+  {
+    "id": "test-product-2",
+    "title": "Another Test Product",
+    "description": "Second product with different characteristics",
+    "images": [
+      "https://example.com/image2.jpg"
+    ],
+    "price": {
+      "amount": 149.5,
+      "currency": "USD"
+    },
+    "paymentMethods": [
+      {
+        "label": "PayPal"
+      }
+    ],
+    "seller": {
+      "id": "seller-2",
+      "name": "Another Seller",
+      "rating": 4,
+      "sales": 200,
+      "isOfficial": true
+    },
+    "stock": 0,
+    "rating": {
+      "average": 3.8,
+      "count": 42
+    },
+    "flags": {
+      "full": false,
+      "freeShipping": false
+    }
+  },
+  {
+    "id": "search-test-product",
+    "title": "Special Search Item",
+    "description": "This product should appear in search results for special queries",
+    "images": [
+      "https://example.com/image3.jpg"
+    ],
+    "price": {
+      "amount": 75.25,
+      "currency": "USD"
+    },
+    "paymentMethods": [
+      {
+        "label": "Credit Card"
+      }
+    ],
+    "seller": {
+      "id": "seller-3",
+      "name": "Search Seller",
+      "rating": 3.5,
+      "sales": 50,
+      "isOfficial": false
+    },
+    "stock": 25,
+    "rating": {
+      "average": 4,
+      "count": 15
+    }
+  }
+]

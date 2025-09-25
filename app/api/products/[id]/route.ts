@@ -1,32 +1,52 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { getProductById } from '../../../../lib/repo'
+import { ProductResponseSchema } from '../../../../lib/validators'
+import { notFoundResponse, internalErrorResponse } from '../../../../lib/errors'
 
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  const { id } = await params
-  
-  // TODO: Fetch product by ID
-  return NextResponse.json({ id, name: `Product ${id}` })
+  try {
+    const { id } = await params
+    
+    // Get product from repository
+    const product = await getProductById(id)
+    
+    if (!product) {
+      return notFoundResponse(`Product with id '${id}' not found`)
+    }
+
+    // Validate response data (guardrail)
+    const validationResult = ProductResponseSchema.safeParse(product)
+    if (!validationResult.success) {
+      console.error('Product validation failed:', validationResult.error.issues)
+      return internalErrorResponse('Product data validation failed')
+    }
+
+    return NextResponse.json(validationResult.data)
+  } catch (error) {
+    console.error('Error in GET /api/products/[id]:', error)
+    return internalErrorResponse('Failed to fetch product')
+  }
 }
 
 export async function PUT(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  const { id } = await params
-  const body = await request.json()
-  
-  // TODO: Update product
-  return NextResponse.json({ id, ...body })
+  return NextResponse.json(
+    { error: { code: 'NOT_IMPLEMENTED', message: 'PUT operation not supported in read-only mode' } },
+    { status: 501 }
+  )
 }
 
 export async function DELETE(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  const { id } = await params
-  
-  // TODO: Delete product
-  return NextResponse.json({ message: `Product ${id} deleted` })
+  return NextResponse.json(
+    { error: { code: 'NOT_IMPLEMENTED', message: 'DELETE operation not supported in read-only mode' } },
+    { status: 501 }
+  )
 }
