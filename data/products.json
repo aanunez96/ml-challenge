@@ -1,0 +1,222 @@
+[
+  {
+    "id": "premium-laptop-mx2024",
+    "title": "MacBook Pro 16\" M3 Max - Premium Edition",
+    "description": "Experience ultimate performance with the latest MacBook Pro featuring M3 Max chip, 64GB unified memory, and 2TB SSD storage. Perfect for professional video editing, 3D rendering, and intensive computational tasks. Features stunning Liquid Retina XDR display with 1000 nits sustained brightness and P3 wide color gamut. Includes advanced thermal architecture for sustained peak performance.",
+    "images": [
+      "https://example.com/images/macbook-pro-16-m3-max-front.jpg",
+      "https://example.com/images/macbook-pro-16-m3-max-side.jpg",
+      "https://example.com/images/macbook-pro-16-m3-max-keyboard.jpg",
+      "https://example.com/images/macbook-pro-16-m3-max-ports.jpg"
+    ],
+    "price": {
+      "amount": 89999.99,
+      "currency": "MXN"
+    },
+    "paymentMethods": [
+      {
+        "label": "Tarjeta de Crédito",
+        "note": "12 meses sin intereses disponibles"
+      },
+      {
+        "label": "PayPal",
+        "note": "Protección del comprador incluida"
+      },
+      {
+        "label": "Transferencia Bancaria",
+        "note": "5% de descuento por pago inmediato"
+      }
+    ],
+    "seller": {
+      "id": "apple-store-mx",
+      "name": "Apple Store México",
+      "rating": 4.9,
+      "sales": 125430,
+      "isOfficial": true,
+      "location": "Ciudad de México, CDMX"
+    },
+    "stock": 15,
+    "rating": {
+      "average": 4.8,
+      "count": 2847
+    },
+    "flags": {
+      "full": true,
+      "freeShipping": true
+    }
+  },
+  {
+    "id": "gaming-chair-deluxe",
+    "title": "Secretlab Titan Evo 2024 Gaming Chair",
+    "description": "The ultimate gaming chair designed for extended comfort during marathon gaming sessions. Features premium Neo Hybrid Leatherette, 4-way adjustable armrests, multi-tilt mechanism, and integrated lumbar support system. Built with cold-cure foam technology for long-lasting comfort and durability.",
+    "images": [
+      "https://example.com/images/secretlab-titan-evo-front.jpg",
+      "https://example.com/images/secretlab-titan-evo-side.jpg",
+      "https://example.com/images/secretlab-titan-evo-back.jpg"
+    ],
+    "price": {
+      "amount": 12499.00,
+      "currency": "MXN"
+    },
+    "paymentMethods": [
+      {
+        "label": "Mercado Pago",
+        "note": "Hasta 18 cuotas sin interés"
+      },
+      {
+        "label": "Tarjeta de Débito"
+      }
+    ],
+    "seller": {
+      "id": "gaming-gear-pro",
+      "name": "Gaming Gear Pro",
+      "rating": 4.5,
+      "sales": 8923,
+      "isOfficial": false,
+      "location": "Guadalajara, Jalisco"
+    },
+    "stock": 0,
+    "rating": {
+      "average": 4.6,
+      "count": 1203
+    },
+    "flags": {
+      "full": false,
+      "freeShipping": true
+    }
+  },
+  {
+    "id": "budget-smartphone-x1",
+    "title": "Smartphone XPhone X1 Basic 64GB",
+    "description": "Affordable smartphone with essential features. Includes 6.1-inch LCD display, dual camera system, and 4000mAh battery. Runs Android 13 with guaranteed security updates for 2 years. Basic performance suitable for everyday tasks like messaging, social media, and light gaming.",
+    "images": [
+      "https://example.com/images/xphone-x1-front.jpg",
+      "https://example.com/images/xphone-x1-back.jpg"
+    ],
+    "price": {
+      "amount": 3299.50,
+      "currency": "MXN"
+    },
+    "paymentMethods": [
+      {
+        "label": "Efectivo en OXXO",
+        "note": "Pago en tiendas de conveniencia"
+      },
+      {
+        "label": "Tarjeta de Crédito"
+      }
+    ],
+    "seller": {
+      "id": "tech-discount",
+      "name": "TechDiscount Store",
+      "rating": 3.2,
+      "sales": 45672,
+      "isOfficial": false,
+      "location": "Monterrey, Nuevo León"
+    },
+    "stock": 234,
+    "rating": {
+      "average": 2.3,
+      "count": 789
+    },
+    "flags": {
+      "full": true,
+      "freeShipping": false
+    }
+  },
+  {
+    "id": "premium-headphones-nc50",
+    "title": "Sony WH-1000XM5 Wireless Noise Canceling Headphones",
+    "description": "Industry-leading noise cancellation meets exceptional sound quality. Features 30-hour battery life, quick charge functionality, and multipoint connection for seamless device switching. Advanced V1 processor and dual noise sensor technology provide premium listening experience. Includes carrying case and audio cable.",
+    "images": [
+      "https://example.com/images/sony-wh1000xm5-black.jpg",
+      "https://example.com/images/sony-wh1000xm5-silver.jpg",
+      "https://example.com/images/sony-wh1000xm5-case.jpg",
+      "https://example.com/images/sony-wh1000xm5-controls.jpg",
+      "https://example.com/images/sony-wh1000xm5-folded.jpg"
+    ],
+    "price": {
+      "amount": 7899.99,
+      "currency": "MXN"
+    },
+    "paymentMethods": [
+      {
+        "label": "American Express",
+        "note": "6 meses sin intereses"
+      },
+      {
+        "label": "Visa",
+        "note": "Hasta 12 meses sin intereses"
+      },
+      {
+        "label": "Mastercard"
+      }
+    ],
+    "seller": {
+      "id": "sony-official-mx",
+      "name": "Sony México Oficial",
+      "rating": 4.7,
+      "sales": 89234,
+      "isOfficial": true,
+      "location": "Ciudad de México, CDMX"
+    },
+    "stock": 87,
+    "rating": {
+      "average": 4.4,
+      "count": 5632
+    },
+    "flags": {
+      "full": true,
+      "freeShipping": false
+    }
+  },
+  {
+    "id": "mechanical-keyboard-rgb",
+    "title": "Corsair K95 RGB Platinum XT Gaming Keyboard",
+    "description": "Premium mechanical gaming keyboard with Cherry MX RGB Speed switches for ultimate responsiveness. Features per-key RGB backlighting with dynamic lighting effects, dedicated media controls, and 6 programmable macro keys. Includes detachable wrist rest for extended gaming comfort. Compatible with Corsair iCUE software for advanced customization.",
+    "images": [
+      "https://example.com/images/corsair-k95-top.jpg",
+      "https://example.com/images/corsair-k95-rgb-demo.jpg",
+      "https://example.com/images/corsair-k95-switches.jpg",
+      "https://example.com/images/corsair-k95-wrist-rest.jpg",
+      "https://example.com/images/corsair-k95-side-angle.jpg",
+      "https://example.com/images/corsair-k95-macro-keys.jpg"
+    ],
+    "price": {
+      "amount": 249.99,
+      "currency": "USD"
+    },
+    "paymentMethods": [
+      {
+        "label": "Credit Card",
+        "note": "Visa, Mastercard, American Express accepted"
+      },
+      {
+        "label": "PayPal",
+        "note": "Buyer protection included"
+      },
+      {
+        "label": "Apple Pay"
+      },
+      {
+        "label": "Google Pay"
+      }
+    ],
+    "seller": {
+      "id": "corsair-usa-direct",
+      "name": "Corsair USA Direct",
+      "rating": 4.6,
+      "sales": 234567,
+      "isOfficial": true
+    },
+    "stock": 156,
+    "rating": {
+      "average": 4.2,
+      "count": 3421
+    },
+    "flags": {
+      "full": false,
+      "freeShipping": true
+    }
+  }
+]
