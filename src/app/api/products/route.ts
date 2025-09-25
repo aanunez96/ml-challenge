@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { listProducts } from '../../../lib/repo'
-import { ProductResponseSchema } from '../../../lib/validators'
-import { validationErrorResponse, internalErrorResponse } from '../../../lib/errors'
+import { listProducts } from '@/lib/repo'
+import { ProductResponseSchema } from '@/lib/validators'
+import { validationErrorResponse, internalErrorResponse } from '@/lib/errors'
 import { z } from 'zod'
 
 // Query parameter validation schema

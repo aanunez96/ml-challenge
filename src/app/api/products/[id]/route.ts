@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getProductById } from '../../../../lib/repo'
-import { ProductResponseSchema } from '../../../../lib/validators'
-import { notFoundResponse, internalErrorResponse } from '../../../../lib/errors'
+import { getProductById } from '@/lib/repo'
+import { ProductResponseSchema } from '@/lib/validators'
+import { notFoundResponse, internalErrorResponse } from '@/lib/errors'
 
 export async function GET(
   request: NextRequest,

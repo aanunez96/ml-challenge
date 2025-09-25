@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { NextRequest } from 'next/server'
-import { GET } from '../../app/api/products/route'
+import { GET } from '../../src/app/api/products/route'
 import * as repo from '../../lib/repo'
 
 // Mock the repo module

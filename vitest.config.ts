@@ -30,8 +30,23 @@ export default defineConfig({
     },
   },
   resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './src'),
-    },
+    alias: [
+      {
+        find: '@/lib',
+        replacement: path.resolve(__dirname, './lib'),
+      },
+      {
+        find: '@/components',
+        replacement: path.resolve(__dirname, './components'),
+      },
+      {
+        find: '@/src',
+        replacement: path.resolve(__dirname, './src'),
+      },
+      {
+        find: '@',
+        replacement: path.resolve(__dirname, './src'),
+      },
+    ],
   },
 })
