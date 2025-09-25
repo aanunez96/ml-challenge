@@ -36,7 +36,10 @@ export async function GET(request: NextRequest) {
     const validatedItems = result.items.map(item => {
       const validationResult = ProductResponseSchema.safeParse(item)
       if (!validationResult.success) {
-        console.error('Product validation failed:', validationResult.error.issues)
+        // Only log validation errors in non-test environments
+        if (process.env.NODE_ENV !== 'test') {
+          console.error('Product validation failed:', validationResult.error.issues)
+        }
         throw new Error('Product data validation failed')
       }
       return validationResult.data
@@ -48,7 +51,10 @@ export async function GET(request: NextRequest) {
       total: result.total
     })
   } catch (error) {
-    console.error('Error in GET /api/products:', error)
+    // Only log errors in non-test environments to reduce test noise
+    if (process.env.NODE_ENV !== 'test') {
+      console.error('Error in GET /api/products:', error)
+    }
     return internalErrorResponse('Failed to fetch products')
   }
 }

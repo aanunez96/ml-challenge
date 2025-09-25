@@ -51,7 +51,7 @@ export default function Gallery({ images, productTitle }: GalleryProps) {
   }
 
   return (
-    <div className="w-full">
+    <div className="w-full" data-testid="product-gallery">
       {/* Main Image */}
       <div className="aspect-square relative bg-gray-100 rounded-lg overflow-hidden mb-4">
         <div 
@@ -60,6 +60,7 @@ export default function Gallery({ images, productTitle }: GalleryProps) {
           role="img"
           aria-label={`${productTitle}, image ${selectedIndex + 1} of ${displayImages.length}`}
           onKeyDown={handleMainImageKeyDown}
+          data-testid="gallery-main-image"
         >
           <Image
             src={displayImages[selectedIndex]}
@@ -69,6 +70,7 @@ export default function Gallery({ images, productTitle }: GalleryProps) {
             priority={selectedIndex === 0}
             onLoad={() => setIsLoading(false)}
             onError={() => setIsLoading(false)}
+            data-testid="gallery-main-image-img"
           />
           {isLoading && (
             <div className="absolute inset-0 bg-gray-200 animate-pulse flex items-center justify-center">
@@ -119,6 +121,7 @@ export default function Gallery({ images, productTitle }: GalleryProps) {
           className="flex gap-2 overflow-x-auto pb-2"
           role="group"
           aria-label="Product image thumbnails"
+          data-testid="gallery-thumbnails"
         >
           {displayImages.map((image, index) => (
             <button
@@ -132,6 +135,7 @@ export default function Gallery({ images, productTitle }: GalleryProps) {
               }`}
               aria-label={`View image ${index + 1} of ${displayImages.length}`}
               aria-pressed={index === selectedIndex}
+              data-testid={`gallery-thumbnail-${index}`}
             >
               <Image
                 src={image}

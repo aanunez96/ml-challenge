@@ -16,6 +16,9 @@ export default defineConfig({
       '**/*.d.ts',
       '**/*.config.*',
     ],
+    env: {
+      NODE_ENV: 'test'
+    },
     coverage: {
       provider: 'v8',
       reporter: ['text', 'html', 'json'],

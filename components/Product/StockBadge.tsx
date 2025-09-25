@@ -58,7 +58,7 @@ export default function StockBadge({ stock }: StockBadgeProps) {
   const { label, bgColor, textColor, icon } = getStockInfo(stock)
 
   return (
-    <div className={`inline-flex items-center gap-2 px-3 py-2 rounded-full text-sm font-medium ${bgColor} ${textColor}`}>
+    <div className={`inline-flex items-center gap-2 px-3 py-2 rounded-full text-sm font-medium ${bgColor} ${textColor}`} data-testid="stock-badge">
       {icon}
       <span>{label}</span>
       

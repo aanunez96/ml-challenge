@@ -34,7 +34,7 @@ export default function ProductDescription({ description }: ProductDescriptionPr
   }
 
   return (
-    <section className="border-t border-gray-200 pt-8">
+    <section className="border-t border-gray-200 pt-8" data-testid="product-description">
       <h2 className="text-xl font-semibold text-gray-900 mb-4">
         Product Description
       </h2>
@@ -43,6 +43,7 @@ export default function ProductDescription({ description }: ProductDescriptionPr
         <div 
           className="text-gray-700 leading-relaxed whitespace-pre-line"
           aria-expanded={isExpanded}
+          data-testid="description-content"
         >
           {displayDescription}
         </div>
@@ -55,6 +56,7 @@ export default function ProductDescription({ description }: ProductDescriptionPr
               className="inline-flex items-center gap-1 text-blue-600 hover:text-blue-700 font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded transition-colors"
               aria-expanded={isExpanded}
               aria-controls="product-description-content"
+              data-testid={isExpanded ? "show-less-button" : "show-more-button"}
             >
               {isExpanded ? (
                 <>

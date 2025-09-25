@@ -19,7 +19,7 @@ export default function BuyBox({ product, disabled = false }: BuyBoxProps) {
   }
 
   return (
-    <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+    <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm" data-testid="buy-box">
       <div className="space-y-4">
         {/* Action Buttons */}
         <div className="space-y-3">
@@ -32,6 +32,7 @@ export default function BuyBox({ product, disabled = false }: BuyBoxProps) {
                 : 'bg-blue-600 hover:bg-blue-700 text-white focus:ring-blue-500'
             }`}
             aria-describedby="buy-now-description"
+            data-testid="buy-now-button"
           >
             {disabled ? 'Out of Stock' : 'Buy Now'}
           </button>
@@ -45,6 +46,7 @@ export default function BuyBox({ product, disabled = false }: BuyBoxProps) {
                 : 'border-blue-600 text-blue-600 bg-white hover:bg-blue-50 focus:ring-blue-500'
             }`}
             aria-describedby="add-to-cart-description"
+            data-testid="add-to-cart-button"
           >
             {disabled ? 'Unavailable' : 'Add to Cart'}
           </button>

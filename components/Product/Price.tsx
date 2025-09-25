@@ -50,18 +50,19 @@ export default function Price({ price }: PriceProps) {
   }
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col" data-testid="price-display">
       <div className="flex items-baseline gap-1">
         <span 
           className="text-3xl sm:text-4xl font-bold text-gray-900"
           aria-label={`${integer} ${getCurrencyLabel(currency)} and ${decimal} cents`}
+          data-testid="price-amount"
         >
           {getCurrencySymbol(currency)}{integer}
-          <span className="text-lg font-normal text-gray-600">
+          <span className="text-lg font-normal text-gray-600" data-testid="price-decimal">
             .{decimal}
           </span>
         </span>
-        <span className="text-lg text-gray-600 ml-1">
+        <span className="text-lg text-gray-600 ml-1" data-testid="price-currency">
           {currency.toUpperCase()}
         </span>
       </div>

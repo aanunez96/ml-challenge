@@ -67,14 +67,14 @@ export default function SellerCard({ seller }: SellerCardProps) {
   }
 
   return (
-    <div className="bg-gray-50 rounded-lg p-4">
-      <h3 className="text-lg font-semibold text-gray-900 mb-3">
+    <div className="bg-gray-50 rounded-lg p-4" data-testid="seller-card">
+      <h3 className="text-lg font-semibold text-gray-900 mb-3" data-testid="seller-card-title">
         Sold by
       </h3>
       
       <div className="flex items-start gap-3">
         <div className="flex-shrink-0">
-          <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+          <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center" data-testid="seller-avatar">
             <svg 
               className="w-6 h-6 text-blue-600" 
               fill="none" 
@@ -94,11 +94,11 @@ export default function SellerCard({ seller }: SellerCardProps) {
         
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-1">
-            <h4 className="font-medium text-gray-900 truncate">
+            <h4 className="font-medium text-gray-900 truncate" data-testid="seller-name">
               {seller.name}
             </h4>
             {seller.isOfficial && (
-              <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+              <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800" data-testid="seller-official-badge">
                 <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
@@ -108,24 +108,24 @@ export default function SellerCard({ seller }: SellerCardProps) {
           </div>
           
           <div className="flex items-center gap-2 text-sm text-gray-600 mb-1">
-            <div className={`flex items-center gap-1 ${getRatingColor(seller.rating)}`}>
-              <div className="flex" aria-label={`${seller.rating} out of 5 stars`}>
+            <div className={`flex items-center gap-1 ${getRatingColor(seller.rating)}`} data-testid="seller-rating">
+              <div className="flex" aria-label={`${seller.rating} out of 5 stars`} data-testid="seller-stars">
                 {renderStars(seller.rating)}
               </div>
-              <span className="font-medium">
+              <span className="font-medium" data-testid="seller-rating-value">
                 {seller.rating.toFixed(1)}
               </span>
             </div>
             
             <span className="text-gray-400">•</span>
             
-            <span>
+            <span data-testid="seller-sales">
               {formatSales(seller.sales)} sales
             </span>
           </div>
           
           {seller.location && (
-            <div className="flex items-center gap-1 text-sm text-gray-600">
+            <div className="flex items-center gap-1 text-sm text-gray-600" data-testid="seller-location">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />

@@ -87,23 +87,24 @@ export default function ReviewsSummary({ rating }: ReviewsSummaryProps) {
   }
 
   return (
-    <div className="flex items-center gap-3">
+    <div className="flex items-center gap-3" data-testid="reviews-summary">
       <div className="flex items-center gap-2">
         <div 
           className="flex items-center gap-1"
           role="img"
           aria-label={`${average} out of 5 stars, ${getRatingText(average)} rating`}
+          data-testid="rating-stars"
         >
           {renderStars(average)}
         </div>
         
-        <span className="text-lg font-semibold text-gray-900">
+        <span className="text-lg font-semibold text-gray-900" data-testid="rating-average">
           {average.toFixed(1)}
         </span>
       </div>
 
       <div className="text-gray-500 text-sm">
-        <span className="hover:text-blue-600 hover:underline cursor-pointer transition-colors">
+        <span className="hover:text-blue-600 hover:underline cursor-pointer transition-colors" data-testid="review-count">
           {formatReviewCount(count)} review{count !== 1 ? 's' : ''}
         </span>
       </div>
