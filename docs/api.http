@@ -1,0 +1,186 @@
+### ML Challenge API Examples
+### Use in VS Code with REST Client extension
+
+@baseUrl = http://localhost:3000
+@productId = premium-laptop-mx2024
+
+# ==============================================
+# Product Detail API
+# ==============================================
+
+### Get Product by ID - Success Case
+GET {{baseUrl}}/api/products/{{productId}}
+Accept: application/json
+
+### Get Product by ID - Alternative Product
+GET {{baseUrl}}/api/products/gaming-chair-deluxe
+Accept: application/json
+
+### Get Product by ID - Not Found Case
+GET {{baseUrl}}/api/products/nonexistent-product
+Accept: application/json
+
+### Get Product by ID - Invalid ID Format
+GET {{baseUrl}}/api/products/123
+Accept: application/json
+
+# ==============================================
+# Product List API (if implemented)
+# ==============================================
+
+### Get All Products - Default
+GET {{baseUrl}}/api/products
+Accept: application/json
+
+### Get Products with Search Query
+GET {{baseUrl}}/api/products?q=laptop
+Accept: application/json
+
+### Get Products with Pagination
+GET {{baseUrl}}/api/products?page=1&limit=12
+Accept: application/json
+
+### Get Products with Search and Pagination
+GET {{baseUrl}}/api/products?q=gaming&page=1&limit=3
+Accept: application/json
+
+### Get Products with Invalid Parameters
+GET {{baseUrl}}/api/products?page=0&limit=101
+Accept: application/json
+
+# ==============================================
+# CURL Examples
+# ==============================================
+
+###
+# Get specific product (success case)
+# curl -X GET "http://localhost:3000/api/products/premium-laptop-mx2024" \
+#      -H "Accept: application/json"
+#
+# Expected Response (200 OK):
+# {
+#   "id": "premium-laptop-mx2024",
+#   "title": "MacBook Pro 16\" M3 Max - Premium Edition",
+#   "description": "Experience ultimate performance...",
+#   "price": {
+#     "amount": 89999.99,
+#     "currency": "MXN"
+#   },
+#   "seller": {
+#     "id": "apple-store-mx",
+#     "name": "Apple Store México",
+#     "rating": 4.9,
+#     "sales": 125430,
+#     "isOfficial": true
+#   },
+#   "stock": 15,
+#   "rating": {
+#     "average": 4.8,
+#     "count": 2847
+#   }
+#   // ... additional product fields
+# }
+
+###
+# Get product - not found case
+# curl -X GET "http://localhost:3000/api/products/nonexistent-product" \
+#      -H "Accept: application/json"
+#
+# Expected Response (404 Not Found):
+# {
+#   "error": {
+#     "code": "NOT_FOUND",
+#     "message": "Product with ID 'nonexistent-product' not found",
+#     "details": {
+#       "resource": "products",
+#       "id": "nonexistent-product"
+#     }
+#   }
+# }
+
+###
+# Get product - invalid ID format
+# curl -X GET "http://localhost:3000/api/products/123" \
+#      -H "Accept: application/json"
+#
+# Expected Response (400 Bad Request):
+# {
+#   "error": {
+#     "code": "VALIDATION_ERROR",
+#     "message": "ID must be at least 6 characters",
+#     "details": {
+#       "field": "id",
+#       "input": "123",
+#       "constraint": "min_length_6"
+#     }
+#   }
+# }
+
+###
+# Get products list with search
+# curl -X GET "http://localhost:3000/api/products?q=gaming&page=1&limit=12" \
+#      -H "Accept: application/json"
+#
+# Expected Response (200 OK):
+# {
+#   "items": [
+#     {
+#       "id": "gaming-chair-deluxe",
+#       "title": "Secretlab Titan Evo 2024 Gaming Chair",
+#       // ... product fields
+#     }
+#   ],
+#   "page": 1,
+#   "total": 1
+# }
+
+###
+# Get products - invalid pagination
+# curl -X GET "http://localhost:3000/api/products?page=0&limit=101" \
+#      -H "Accept: application/json"
+#
+# Expected Response (400 Bad Request):
+# {
+#   "error": {
+#     "code": "VALIDATION_ERROR",
+#     "message": "Validation failed for query parameters",
+#     "details": {
+#       "issues": [
+#         {
+#           "field": "page",
+#           "message": "Number must be greater than or equal to 1"
+#         },
+#         {
+#           "field": "limit",
+#           "message": "Number must be less than or equal to 100"
+#         }
+#       ]
+#     }
+#   }
+# }
+
+# ==============================================
+# HTTP Status Codes Reference
+# ==============================================
+
+# 200 OK - Successful retrieval
+# 400 Bad Request - Invalid request parameters or body
+# 404 Not Found - Resource not found
+# 422 Unprocessable Entity - Valid request format but logical validation errors
+# 500 Internal Server Error - Unexpected server errors
+
+# ==============================================
+# Common Request Headers
+# ==============================================
+
+# Accept: application/json
+# Content-Type: application/json (for POST/PUT requests)
+# Authorization: Bearer <token> (if authentication implemented)
+
+# ==============================================
+# Rate Limiting (if implemented)
+# ==============================================
+
+# X-RateLimit-Limit: 100
+# X-RateLimit-Remaining: 99
+# X-RateLimit-Reset: 1640995200

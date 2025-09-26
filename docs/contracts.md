@@ -1,33 +1,271 @@
-# Product Data Contracts Documentation
+# Data Contracts & Schema Documentation
 
-## Overview
+This document defines the data structures, validation rules, and API contracts used throughout the ML Challenge project.
 
-This document defines the data model and validation rules for the Product API in our Next.js application. The schema ensures data consistency, type safety, and proper validation across all product-related operations.
+## Product Schema
 
-## ProductResponse Schema
+### ProductResponse
 
-### Core Fields
+The complete product data structure returned by API endpoints.
 
-| Field | Type | Validation | Description |
-|-------|------|------------|-------------|
-| `id` | string | 6-40 chars, [a-z0-9_-] only | Unique product identifier |
-| `title` | string | 1-160 chars | Product display name |
-| `description` | string | 1-5000 chars | Detailed product description |
-| `images` | string[] | 1-10 HTTPS URLs | Product images array |
-| `stock` | number | Integer ≥ 0 | Available inventory count |
+```typescript
+interface ProductResponse {
+  id: string                    // 6-40 chars, [a-z0-9_-] only
+  title: string                 // 1-160 characters
+  description: string           // 1-5000 characters
+  images: string[]              // 1-10 HTTPS URLs
+  price: Price                  // Price object
+  paymentMethods: PaymentMethod[]  // At least 1 method
+  seller: Seller               // Seller information
+  stock: number                // Non-negative integer
+  rating: Rating               // Rating object
+  flags?: ProductFlags         // Optional feature flags
+}
+```
 
 ### Price Object
 
 ```typescript
-{
-  amount: number    // Positive, max 2 decimals
+interface Price {
+  amount: number    // Positive, max 2 decimal places
   currency: 'MXN' | 'USD'
+}
+```
+
+**Validation Rules:**
+- Amount must be positive (> 0)
+- Maximum 2 decimal places (e.g., 99.99, not 99.999)
+- Only MXN and USD currencies supported
+
+**Examples:**
+```json
+{
+  "amount": 89999.99,
+  "currency": "MXN"
 }
 ```
 
 ### Rating Object
 
 ```typescript
+interface Rating {
+  average: number  // 0-5, in 0.1 steps
+  count: number    // Non-negative integer
+}
+```
+
+**Validation Rules:**
+- Average: 0.0 to 5.0 range in 0.1 increments
+- Count: Non-negative integer (≥ 0)
+
+**Examples:**
+```json
+{
+  "average": 4.8,
+  "count": 2847
+}
+```
+
+### Payment Method Object
+
+```typescript
+interface PaymentMethod {
+  label: string    // 1-40 characters, required
+  note?: string    // Optional, max 100 characters
+}
+```
+
+**Examples:**
+```json
+{
+  "label": "Tarjeta de Crédito",
+  "note": "12 meses sin intereses disponibles"
+}
+```
+
+### Seller Object
+
+```typescript
+interface Seller {
+  id: string        // 6-40 chars, [a-z0-9_-] only
+  name: string      // Required, min 1 character
+  rating: number    // 0-5 range
+  sales: number     // Non-negative integer
+  isOfficial: boolean
+  location?: string // Optional
+}
+```
+
+**Examples:**
+```json
+{
+  "id": "apple-store-mx",
+  "name": "Apple Store México",
+  "rating": 4.9,
+  "sales": 125430,
+  "isOfficial": true,
+  "location": "Ciudad de México, CDMX"
+}
+```
+
+### Product Flags Object
+
+```typescript
+interface ProductFlags {
+  full?: boolean         // Product is fully featured
+  freeShipping?: boolean // Free shipping available
+}
+```
+
+**Examples:**
+```json
+{
+  "full": true,
+  "freeShipping": true
+}
+```
+
+## ID Validation Rules
+
+Product and seller IDs must follow strict formatting:
+
+- **Length**: 6-40 characters
+- **Characters**: Lowercase letters (a-z), numbers (0-9), underscores (_), hyphens (-)
+- **Pattern**: `/^[a-z0-9_-]{6,40}$/`
+
+**Valid IDs:**
+- `premium-laptop-mx2024`
+- `gaming_chair_deluxe`
+- `apple-store-mx`
+
+**Invalid IDs:**
+- `123` (too short)
+- `Product-With-UPPERCASE` (uppercase not allowed)
+- `product@store.com` (special characters not allowed)
+
+## Image URL Validation
+
+Product images must be HTTPS URLs:
+
+- **Protocol**: HTTPS only (security requirement)
+- **Format**: Valid URL format
+- **Quantity**: 1-10 images per product
+
+**Valid URLs:**
+- `https://example.com/product-image.jpg`
+- `https://cdn.store.com/images/laptop-front-view.png`
+
+**Invalid URLs:**
+- `http://example.com/image.jpg` (HTTP not allowed)
+- `relative/path/image.jpg` (not a complete URL)
+
+## API Query Parameters
+
+### Product List Query
+
+```typescript
+interface ProductListQuery {
+  q?: string      // Optional search query
+  page?: number   // Page number (≥ 1, default: 1)
+  limit?: number  // Items per page (1-100, default: 12)
+}
+```
+
+**Validation Rules:**
+- Page: Minimum 1, default 1
+- Limit: Range 1-100, default 12
+- Search query: Optional string
+
+## API Response Formats
+
+### Success Response
+
+Single product endpoint returns `ProductResponse` directly:
+
+```json
+{
+  "id": "premium-laptop-mx2024",
+  "title": "MacBook Pro 16\" M3 Max - Premium Edition",
+  "description": "Experience ultimate performance...",
+  "price": {
+    "amount": 89999.99,
+    "currency": "MXN"
+  }
+}
+```
+
+### List Response
+
+Product list endpoint returns paginated results:
+
+```typescript
+interface ProductListResponse {
+  items: ProductResponse[]  // Array of products
+  page: number             // Current page number
+  total: number            // Total matching items
+}
+```
+
+```json
+{
+  "items": [
+    { /* ProductResponse object */ }
+  ],
+  "page": 1,
+  "total": 3
+}
+```
+
+### Error Response
+
+All error responses follow consistent envelope format:
+
+```typescript
+interface ErrorResponse {
+  error: {
+    code: string          // Error classification
+    message: string       // Human-readable message
+    details?: object      // Additional context
+  }
+}
+```
+
+**Error Codes:**
+- `VALIDATION_ERROR`: Invalid input data or parameters
+- `NOT_FOUND`: Requested resource doesn't exist
+- `NOT_IMPLEMENTED`: Endpoint not yet implemented
+- `INTERNAL_ERROR`: Unexpected server error
+
+**Examples:**
+
+```json
+// Validation Error
+{
+  "error": {
+    "code": "VALIDATION_ERROR",
+    "message": "ID must be at least 6 characters",
+    "details": {
+      "field": "id",
+      "input": "123",
+      "constraint": "min_length_6"
+    }
+  }
+}
+
+// Not Found Error
+{
+  "error": {
+    "code": "NOT_FOUND",
+    "message": "Product with ID 'nonexistent' not found",
+    "details": {
+      "resource": "products",
+      "id": "nonexistent"
+    }
+  }
+}
+```
+
+This contract ensures consistent data handling across all application layers and provides clear expectations for API consumers.
 {
   average: number   // 0-5 in 0.1 steps (e.g., 4.3, 4.7)
   count: number     // Integer ≥ 0

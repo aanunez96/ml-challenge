@@ -1,0 +1,22 @@
+# Placeholder for PDP Demo GIF
+
+This is a placeholder file for the product detail page demonstration GIF.
+
+To capture the actual demo:
+1. Start the development server with `pnpm dev`
+2. Use screen recording software (OBS, QuickTime, etc.)
+3. Record a 10-15 second demo showing:
+   - Navigation to product detail page
+   - Image gallery interaction (if multiple images)
+   - Scroll through product information
+   - Highlight key features and responsive design
+4. Convert to GIF format (recommended max 2MB file size)
+5. Save as `public/docs/pdp-demo.gif`
+6. Replace this placeholder file
+
+**Recommended GIF specifications:**
+- Duration: 10-15 seconds
+- Resolution: 800x600 pixels (or similar 4:3 ratio)
+- Format: GIF or WebP
+- Frame rate: 10-15 fps for smaller file size
+- Include: Key interactions and page features
