@@ -54,7 +54,7 @@ export default function Gallery({ images, productTitle }: GalleryProps) {
     <div className="w-full" data-testid="product-gallery">
       {/* Main Image */}
       <div className="aspect-square relative bg-gray-100 rounded-lg overflow-hidden mb-4">
-        <div 
+        <div
           className="relative w-full h-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset"
           tabIndex={0}
           role="img"
@@ -117,7 +117,7 @@ export default function Gallery({ images, productTitle }: GalleryProps) {
 
       {/* Thumbnails */}
       {displayImages.length > 1 && (
-        <div 
+        <div
           className="flex gap-2 overflow-x-auto pb-2"
           role="group"
           aria-label="Product image thumbnails"
@@ -129,8 +129,8 @@ export default function Gallery({ images, productTitle }: GalleryProps) {
               onClick={() => handleThumbnailClick(index)}
               onKeyDown={(e) => handleKeyDown(e, index)}
               className={`flex-shrink-0 w-20 h-20 rounded-md overflow-hidden border-2 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
-                index === selectedIndex 
-                  ? 'border-blue-500' 
+                index === selectedIndex
+                  ? 'border-blue-500'
                   : 'border-gray-200 hover:border-gray-300'
               }`}
               aria-label={`View image ${index + 1} of ${displayImages.length}`}
@@ -150,9 +150,9 @@ export default function Gallery({ images, productTitle }: GalleryProps) {
       )}
 
       {/* Screen reader announcement for image changes */}
-      <div 
-        className="sr-only" 
-        aria-live="polite" 
+      <div
+        className="sr-only"
+        aria-live="polite"
         aria-atomic="true"
       >
         {`Showing image ${selectedIndex + 1} of ${displayImages.length}`}

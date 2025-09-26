@@ -4,10 +4,10 @@
     "title": "MacBook Pro 16\" M3 Max - Premium Edition",
     "description": "Experience ultimate performance with the latest MacBook Pro featuring M3 Max chip, 64GB unified memory, and 2TB SSD storage. Perfect for professional video editing, 3D rendering, and intensive computational tasks. Features stunning Liquid Retina XDR display with 1000 nits sustained brightness and P3 wide color gamut. Includes advanced thermal architecture for sustained peak performance.",
     "images": [
-      "https://example.com/images/macbook-pro-16-m3-max-front.jpg",
-      "https://example.com/images/macbook-pro-16-m3-max-side.jpg",
-      "https://example.com/images/macbook-pro-16-m3-max-keyboard.jpg",
-      "https://example.com/images/macbook-pro-16-m3-max-ports.jpg"
+      "https://picsum.photos/seed/premium-laptop-mx2024-front/1600/1200",
+      "https://picsum.photos/seed/premium-laptop-mx2024-side/1600/1200",
+      "https://picsum.photos/seed/premium-laptop-mx2024-keyboard/1600/1200",
+      "https://picsum.photos/seed/premium-laptop-mx2024-ports/1600/1200"
     ],
     "price": {
       "amount": 89999.99,
@@ -50,9 +50,9 @@
     "title": "Secretlab Titan Evo 2024 Gaming Chair",
     "description": "The ultimate gaming chair designed for extended comfort during marathon gaming sessions. Features premium Neo Hybrid Leatherette, 4-way adjustable armrests, multi-tilt mechanism, and integrated lumbar support system. Built with cold-cure foam technology for long-lasting comfort and durability.",
     "images": [
-      "https://example.com/images/secretlab-titan-evo-front.jpg",
-      "https://example.com/images/secretlab-titan-evo-side.jpg",
-      "https://example.com/images/secretlab-titan-evo-back.jpg"
+      "https://picsum.photos/seed/gaming-chair-deluxe-front/1600/1200",
+      "https://picsum.photos/seed/gaming-chair-deluxe-side/1600/1200",
+      "https://picsum.photos/seed/gaming-chair-deluxe-back/1600/1200"
     ],
     "price": {
       "amount": 12499.00,
@@ -90,8 +90,8 @@
     "title": "Smartphone XPhone X1 Basic 64GB",
     "description": "Affordable smartphone with essential features. Includes 6.1-inch LCD display, dual camera system, and 4000mAh battery. Runs Android 13 with guaranteed security updates for 2 years. Basic performance suitable for everyday tasks like messaging, social media, and light gaming.",
     "images": [
-      "https://example.com/images/xphone-x1-front.jpg",
-      "https://example.com/images/xphone-x1-back.jpg"
+      "https://picsum.photos/seed/budget-smartphone-x1-front/1600/1200",
+      "https://picsum.photos/seed/budget-smartphone-x1-back/1600/1200"
     ],
     "price": {
       "amount": 3299.50,
@@ -129,11 +129,11 @@
     "title": "Sony WH-1000XM5 Wireless Noise Canceling Headphones",
     "description": "Industry-leading noise cancellation meets exceptional sound quality. Features 30-hour battery life, quick charge functionality, and multipoint connection for seamless device switching. Advanced V1 processor and dual noise sensor technology provide premium listening experience. Includes carrying case and audio cable.",
     "images": [
-      "https://example.com/images/sony-wh1000xm5-black.jpg",
-      "https://example.com/images/sony-wh1000xm5-silver.jpg",
-      "https://example.com/images/sony-wh1000xm5-case.jpg",
-      "https://example.com/images/sony-wh1000xm5-controls.jpg",
-      "https://example.com/images/sony-wh1000xm5-folded.jpg"
+      "https://picsum.photos/seed/premium-headphones-nc50-black/1600/1200",
+      "https://picsum.photos/seed/premium-headphones-nc50-silver/1600/1200",
+      "https://picsum.photos/seed/premium-headphones-nc50-case/1600/1200",
+      "https://picsum.photos/seed/premium-headphones-nc50-controls/1600/1200",
+      "https://picsum.photos/seed/premium-headphones-nc50-folded/1600/1200"
     ],
     "price": {
       "amount": 7899.99,
@@ -175,12 +175,12 @@
     "title": "Corsair K95 RGB Platinum XT Gaming Keyboard",
     "description": "Premium mechanical gaming keyboard with Cherry MX RGB Speed switches for ultimate responsiveness. Features per-key RGB backlighting with dynamic lighting effects, dedicated media controls, and 6 programmable macro keys. Includes detachable wrist rest for extended gaming comfort. Compatible with Corsair iCUE software for advanced customization.",
     "images": [
-      "https://example.com/images/corsair-k95-top.jpg",
-      "https://example.com/images/corsair-k95-rgb-demo.jpg",
-      "https://example.com/images/corsair-k95-switches.jpg",
-      "https://example.com/images/corsair-k95-wrist-rest.jpg",
-      "https://example.com/images/corsair-k95-side-angle.jpg",
-      "https://example.com/images/corsair-k95-macro-keys.jpg"
+      "https://picsum.photos/seed/mechanical-keyboard-rgb-top/1600/1200",
+      "https://picsum.photos/seed/mechanical-keyboard-rgb-rgb/1600/1200",
+      "https://picsum.photos/seed/mechanical-keyboard-rgb-switches/1600/1200",
+      "https://picsum.photos/seed/mechanical-keyboard-rgb-wrist-rest/1600/1200",
+      "https://picsum.photos/seed/mechanical-keyboard-rgb-side/1600/1200",
+      "https://picsum.photos/seed/mechanical-keyboard-rgb-macro-keys/1600/1200"
     ],
     "price": {
       "amount": 249.99,
