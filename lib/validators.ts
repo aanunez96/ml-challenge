@@ -95,3 +95,19 @@ export type CreateProduct = z.infer<typeof CreateProductSchema>
 
 export const UpdateProductSchema = ProductResponseSchema.partial().omit({ id: true })
 export type UpdateProduct = z.infer<typeof UpdateProductSchema>
+
+// Query parameter validation schemas
+export const ProductListQuerySchema = z.object({
+  q: z.string().optional(),
+  page: z.coerce.number().int().min(1).optional().default(1),
+  limit: z.coerce.number().int().min(1).max(100).optional().default(10)
+})
+
+export const ProductListResponseSchema = z.object({
+  items: z.array(ProductResponseSchema),
+  page: z.number().int().min(1),
+  total: z.number().int().min(0)
+})
+
+export type ProductListQuery = z.infer<typeof ProductListQuerySchema>
+export type ProductListResponse = z.infer<typeof ProductListResponseSchema>

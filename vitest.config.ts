@@ -21,15 +21,28 @@ export default defineConfig({
     },
     coverage: {
       provider: 'v8',
-      reporter: ['text', 'html', 'json'],
+      reportsDirectory: './coverage',
+      reporter: ['text', 'lcov', 'html'],
+      all: true,
+      include: [
+        'src/app/api/**/*.{ts,tsx}', // API routes only
+        'lib/**/*.{ts,tsx}', // Business logic
+      ],
       exclude: [
         'node_modules/**',
         '.next/**',
         'coverage/**',
         'tests/**',
+        'playwright-report/**',
         '**/*.d.ts',
         '**/*.config.*',
       ],
+      thresholds: {
+        lines: 80,
+        statements: 80,
+        functions: 80,
+        branches: 80
+      }
     },
   },
   resolve: {
