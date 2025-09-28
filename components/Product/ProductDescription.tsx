@@ -8,18 +8,18 @@ interface ProductDescriptionProps {
 
 export default function ProductDescription({ description }: ProductDescriptionProps) {
   const [isExpanded, setIsExpanded] = useState(false)
-  
+
   // Determine if content is long enough to need truncation
   const isLongContent = description.length > 300
   const shouldShowToggle = isLongContent
-  
+
   // Create truncated version
-  const truncatedDescription = isLongContent 
+  const truncatedDescription = isLongContent
     ? description.slice(0, 300) + '...'
     : description
-  
-  const displayDescription = isExpanded || !isLongContent 
-    ? description 
+
+  const displayDescription = isExpanded || !isLongContent
+    ? description
     : truncatedDescription
 
   const handleToggle = () => {
@@ -34,63 +34,77 @@ export default function ProductDescription({ description }: ProductDescriptionPr
   }
 
   return (
-    <section className="border-t border-gray-200 pt-8" data-testid="product-description">
-      <h2 className="text-xl font-semibold text-gray-900 mb-4">
-        Product Description
+    <section
+      className="pt-6"
+      style={{ borderTop: '1px solid var(--marketplace-border)' }}
+      data-testid="product-description"
+    >
+      <h2
+        className="text-lg font-medium mb-4"
+        style={{ color: 'var(--marketplace-text)' }}
+      >
+        Descripción
       </h2>
-      
-      <div className="prose prose-gray max-w-none">
-        <div 
-          className="text-gray-700 leading-relaxed whitespace-pre-line"
+
+      <div className="max-w-none">
+        <div
+          className={`leading-relaxed whitespace-pre-line transition-all duration-300 ease-in-out ${
+            isExpanded ? 'max-h-none' : 'max-h-[8rem] overflow-hidden'
+          }`}
+          style={{
+            color: 'var(--marketplace-text)',
+            lineClamp: isExpanded ? 'none' : '8'
+          }}
           aria-expanded={isExpanded}
           data-testid="description-content"
         >
-          {displayDescription}
+          {description}
         </div>
-        
+
         {shouldShowToggle && (
           <div className="mt-4">
             <button
               onClick={handleToggle}
               onKeyDown={handleKeyDown}
-              className="inline-flex items-center gap-1 text-blue-600 hover:text-blue-700 font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded transition-colors"
+              className="inline-flex items-center gap-1 text-sm font-medium focus-ring rounded transition-colors hover:underline"
+              style={{ color: 'var(--marketplace-accent)' }}
               aria-expanded={isExpanded}
               aria-controls="product-description-content"
               data-testid={isExpanded ? "show-less-button" : "show-more-button"}
             >
               {isExpanded ? (
                 <>
-                  <span>Show less</span>
-                  <svg 
-                    className="w-4 h-4" 
-                    fill="none" 
-                    stroke="currentColor" 
+                  <span>Ver menos</span>
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
                     viewBox="0 0 24 24"
                     aria-hidden="true"
                   >
-                    <path 
-                      strokeLinecap="round" 
-                      strokeLinejoin="round" 
-                      strokeWidth={2} 
-                      d="M5 15l7-7 7 7" 
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 15l7-7 7 7"
                     />
                   </svg>
                 </>
               ) : (
                 <>
-                  <span>Show more</span>
-                  <svg 
-                    className="w-4 h-4" 
-                    fill="none" 
-                    stroke="currentColor" 
+                  <span>Ver más</span>
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
                     viewBox="0 0 24 24"
                     aria-hidden="true"
                   >
-                    <path 
-                      strokeLinecap="round" 
-                      strokeLinejoin="round" 
-                      strokeWidth={2} 
-                      d="M19 9l-7 7-7-7" 
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
                     />
                   </svg>
                 </>
@@ -101,12 +115,12 @@ export default function ProductDescription({ description }: ProductDescriptionPr
       </div>
 
       {/* Screen reader announcement for content changes */}
-      <div 
-        className="sr-only" 
+      <div
+        className="sr-only"
         aria-live="polite"
         id="product-description-content"
       >
-        {isExpanded ? 'Full description is now visible' : 'Description is collapsed'}
+        {isExpanded ? 'La descripción completa ahora está visible' : 'La descripción está colapsada'}
       </div>
     </section>
   )

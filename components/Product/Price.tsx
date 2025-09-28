@@ -10,10 +10,10 @@ export default function Price({ price }: PriceProps) {
     // Split into integer and decimal parts
     const integerPart = Math.floor(amount)
     const decimalPart = Math.round((amount - integerPart) * 100)
-    
+
     // Format integer part with commas
     const formattedInteger = integerPart.toLocaleString('en-US')
-    
+
     return {
       integer: formattedInteger,
       decimal: decimalPart.toString().padStart(2, '0'),
@@ -50,23 +50,41 @@ export default function Price({ price }: PriceProps) {
   }
 
   return (
-    <div className="flex flex-col" data-testid="price-display">
-      <div className="flex items-baseline gap-1">
-        <span 
-          className="text-3xl sm:text-4xl font-bold text-gray-900"
-          aria-label={`${integer} ${getCurrencyLabel(currency)} and ${decimal} cents`}
-          data-testid="price-amount"
-        >
-          {getCurrencySymbol(currency)}{integer}
-          <span className="text-lg font-normal text-gray-600" data-testid="price-decimal">
-            .{decimal}
+    <div className="space-y-1" data-testid="price-display">
+      <div className="flex items-start">
+        <span className="text-xs mt-2 mr-1" style={{ color: '#333' }}>
+          {getCurrencySymbol(currency)}
+        </span>
+        <div className="flex items-baseline">
+          <span
+            className="text-3xl font-light leading-none"
+            style={{ color: '#333' }}
+            data-testid="price-int"
+          >
+            {integer}
           </span>
-        </span>
-        <span className="text-lg text-gray-600 ml-1" data-testid="price-currency">
-          {currency.toUpperCase()}
-        </span>
+          <span
+            className="text-lg font-light leading-none"
+            style={{ color: '#333' }}
+            data-testid="price-dec"
+          >
+            {decimal !== '00' ? `.${decimal}` : ''}
+          </span>
+        </div>
       </div>
-      
+
+      {/* Installments info */}
+      <div className="text-sm" style={{ color: '#00A650' }}>
+        en 12x ${Math.round(price.amount / 12).toLocaleString()} sin interés
+      </div>
+
+      {/* See payment methods link */}
+      <div>
+        <a href="#" className="text-xs" style={{ color: '#3483FA' }}>
+          Ver los medios de pago
+        </a>
+      </div>
+
       {/* Screen reader friendly price */}
       <span className="sr-only">
         Price: {price.amount} {getCurrencyLabel(currency)}

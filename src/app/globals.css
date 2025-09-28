@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "../../styles/theme.css";
 
 :root {
   --background: #ffffff;
@@ -10,6 +11,27 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  /* Marketplace theme colors */
+  --color-ml-primary: var(--marketplace-primary);
+  --color-ml-accent: var(--marketplace-accent);
+  --color-ml-success: var(--marketplace-success);
+  --color-ml-text: var(--marketplace-text);
+  --color-ml-muted: var(--marketplace-muted);
+  --color-ml-border: var(--marketplace-border);
+  --color-ml-bg: var(--marketplace-bg);
+  --color-ml-bg-sub: var(--marketplace-bg-sub);
+  --color-ml-header: var(--marketplace-header);
+  --color-star: var(--star-color);
+
+  /* Radius values */
+  --radius-6: var(--radius-6);
+  --radius-ml-card: var(--radius-12);
+  --radius-ml-pill: var(--radius-pill);
+
+  /* Shadows */
+  --shadow-ml-card: var(--shadow-card);
+  --shadow-ml-card-hover: var(--shadow-card-hover);
 }
 
 @media (prefers-color-scheme: dark) {

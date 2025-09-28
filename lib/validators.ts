@@ -45,6 +45,13 @@ const sellerSchema = z.object({
   location: z.string().optional(),
 })
 
+// Product features validation
+const featureSchema = z.object({
+  icon: z.string().min(1, 'Feature icon is required'),
+  label: z.string().min(1, 'Feature label is required').max(100, 'Feature label must not exceed 100 characters'),
+  highlight: z.boolean().optional(),
+})
+
 // Flags validation (optional toggles)
 const flagsSchema = z
   .object({
@@ -75,6 +82,10 @@ export const ProductResponseSchema = z.object({
   seller: sellerSchema,
   stock: z.number().int().min(0, 'Stock must be a non-negative integer'),
   rating: ratingSchema,
+  features: z
+    .array(featureSchema)
+    .max(10, 'Maximum 10 features allowed')
+    .optional(),
   flags: flagsSchema,
 })
 
@@ -84,6 +95,7 @@ export type Price = z.infer<typeof priceSchema>
 export type Rating = z.infer<typeof ratingSchema>
 export type PaymentMethod = z.infer<typeof paymentMethodSchema>
 export type Seller = z.infer<typeof sellerSchema>
+export type ProductFeature = z.infer<typeof featureSchema>
 export type ProductFlags = z.infer<typeof flagsSchema>
 
 // Legacy schemas for backward compatibility

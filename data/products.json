@@ -23,8 +23,12 @@
         "note": "Protección del comprador incluida"
       },
       {
-        "label": "Transferencia Bancaria",
-        "note": "5% de descuento por pago inmediato"
+        "label": "Mercado Pago",
+        "note": "Paga en hasta 18 cuotas sin interés"
+      },
+      {
+        "label": "Efectivo",
+        "note": "Descuento por pago en efectivo"
       }
     ],
     "seller": {
@@ -40,6 +44,25 @@
       "average": 4.8,
       "count": 2847
     },
+    "features": [
+      {
+        "icon": "truck",
+        "label": "Envío gratis",
+        "highlight": true
+      },
+      {
+        "icon": "shield-check",
+        "label": "Compra Protegida"
+      },
+      {
+        "icon": "return",
+        "label": "Devolución gratis"
+      },
+      {
+        "icon": "star",
+        "label": "Vendido por MercadoLibre"
+      }
+    ],
     "flags": {
       "full": true,
       "freeShipping": true
@@ -80,6 +103,21 @@
       "average": 4.6,
       "count": 1203
     },
+    "features": [
+      {
+        "icon": "truck",
+        "label": "Envío gratis",
+        "highlight": true
+      },
+      {
+        "icon": "shield-check",
+        "label": "Compra Protegida"
+      },
+      {
+        "icon": "return",
+        "label": "Devolución gratis"
+      }
+    ],
     "flags": {
       "full": false,
       "freeShipping": true
@@ -119,6 +157,16 @@
       "average": 2.3,
       "count": 789
     },
+    "features": [
+      {
+        "icon": "shield-check",
+        "label": "Compra Protegida"
+      },
+      {
+        "icon": "return",
+        "label": "Devolución gratis"
+      }
+    ],
     "flags": {
       "full": true,
       "freeShipping": false
@@ -165,6 +213,25 @@
       "average": 4.4,
       "count": 5632
     },
+    "features": [
+      {
+        "icon": "truck",
+        "label": "Envío gratis",
+        "highlight": true
+      },
+      {
+        "icon": "shield-check",
+        "label": "Compra Protegida"
+      },
+      {
+        "icon": "return",
+        "label": "Devolución gratis"
+      },
+      {
+        "icon": "star",
+        "label": "Vendido por Sony Oficial"
+      }
+    ],
     "flags": {
       "full": true,
       "freeShipping": false
