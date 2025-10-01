@@ -1,3 +1,5 @@
+import Footer from "@/components/Layout/Footer";
+import Header from "@/components/Layout/Header";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -25,9 +27,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-ml-bg-sub text-ml-text`}
       >
-        {children}
+        <Header />
+        <main className="min-h-screen bg-ml-bg-sub">
+          {children}
+        </main>
+        <Footer />
       </body>
     </html>
   );

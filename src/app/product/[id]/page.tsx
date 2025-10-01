@@ -43,91 +43,72 @@ export default async function ProductPage({ params }: ProductPageProps) {
   }
 
   return (
-    <div className="min-h-screen bg-ml-bg-sub">
-      {/* Header Band - Yellow ML Style */}
-      <header className="h-14 bg-ml-primary">
-        <div className="max-w-[1200px] mx-auto px-4 h-full flex items-center">
-          <div className="flex items-center gap-4 flex-1">
-            <div className="text-2xl font-bold text-ml-header">ML</div>
-            <div className="flex-1 max-w-lg">
-              <div className="h-9 rounded-sm border border-ml-border px-3 flex items-center text-sm bg-ml-bg">
-                <svg className="w-4 h-4 text-gray-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-                Buscar productos, marcas y más...
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
+    <div className="max-w-[1200px] mx-auto px-4 py-4">
+      {/* Breadcrumb */}
+      <nav className="text-xs mb-6 text-ml-muted">
+        <span>Electrónicos, Audio y Video</span>
+        <span className="mx-1">{'>'}</span>
+        <span>Audio</span>
+        <span className="mx-1">{'>'}</span>
+        <span>Auriculares</span>
+      </nav>
 
-      <main className="max-w-[1200px] mx-auto px-4 py-4">
-        {/* Breadcrumb */}
-        <nav className="text-xs mb-6 text-ml-muted">
-          <span>Electrónicos, Audio y Video</span>
-          <span className="mx-1">{'>'}</span>
-          <span>Audio</span>
-          <span className="mx-1">{'>'}</span>
-          <span>Auriculares</span>
-        </nav>
-
-        <div className="grid grid-cols-12 gap-6 bg-ml-bg p-6 rounded-lg shadow-ml-card">
-          {/* Main Content Area - Gallery and Details */}
-          <div className="col-span-8">
-            <div className="grid grid-cols-12 gap-6">
-              {/* Gallery Section */}
-              <div className="xl:col-span-7 col-span-12">
-                <Gallery
-                  images={product.images}
-                  productTitle={product.title}
-                />
-              </div>
-
-              {/* Product Details Section */}
-              <div className="xl:col-span-5 col-span-12 space-y-4">
-                {/* Product Title */}
-                <div>
-                  <h1
-                    className="text-xl font-normal leading-tight mb-2 text-ml-text"
-                    data-testid="title"
-                  >
-                    {product.title}
-                  </h1>
-
-                  {/* Rating and Stock */}
-                  <div className="flex items-center gap-4 mb-2">
-                    <ReviewsSummary rating={product.rating} />
-                    <span className="text-xs text-ml-muted">
-                      | {product.stock} disponibles
-                    </span>
-                  </div>
-                </div>
-
-                {/* Price Section */}
-                <div>
-                  <Price price={product.price} />
-                </div>
-              </div>
-            </div>
-
-            {/* Product Description */}
-            <div className="xl:col-span-12 mt-8 col-span-12">
-              <ProductDescription description={product.description} />
-            </div>
-          </div>
-
-          {/* Sidebar - Buy Box and Payment Methods */}
-          <div className="xl:col-span-4 col-span-12">
-            <div className="sticky top-4 space-y-4">
-              <BuyBox
-                product={product}
-                disabled={product.stock === 0}
+      <div className="grid grid-cols-12 gap-6 bg-ml-bg p-6 rounded-lg shadow-ml-card">
+        {/* Main Content Area - Gallery and Details */}
+        <div className="col-span-8">
+          <div className="grid grid-cols-12 gap-6">
+            {/* Gallery Section */}
+            <div className="xl:col-span-7 col-span-12">
+              <Gallery
+                images={product.images}
+                productTitle={product.title}
               />
-              <PaymentMethods methods={product.paymentMethods} />
+            </div>
+
+            {/* Product Details Section */}
+            <div className="xl:col-span-5 col-span-12 space-y-4">
+              {/* Product Title */}
+              <div>
+                <h1
+                  className="text-xl font-normal leading-tight mb-2 text-ml-text"
+                  data-testid="title"
+                >
+                  {product.title}
+                </h1>
+
+                {/* Rating and Stock */}
+                <div className="flex items-center gap-4 mb-2">
+                  <ReviewsSummary rating={product.rating} />
+                  <span className="text-xs text-ml-muted">
+                    | {product.stock} disponibles
+                  </span>
+                </div>
+              </div>
+
+              {/* Price Section */}
+              <div>
+                <Price price={product.price} />
+              </div>
             </div>
           </div>
+
+          {/* Product Description */}
+          <div className="xl:col-span-12 mt-8 col-span-12">
+            <ProductDescription description={product.description} />
+          </div>
         </div>
-      </main>
+
+        {/* Sidebar - Buy Box and Payment Methods */}
+        <div className="xl:col-span-4 col-span-12">
+          <div className="sticky top-4 space-y-4">
+            <BuyBox
+              product={product}
+              disabled={product.stock === 0}
+            />
+            <PaymentMethods methods={product.paymentMethods} />
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

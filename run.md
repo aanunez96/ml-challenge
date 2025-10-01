@@ -84,7 +84,7 @@ pnpm test
 # ✓ tests/unit/api-client.test.ts (10 tests)
 # ...
 # Test Files: 11 passed (11)
-# Tests: 107 passed (107)
+# Tests: 105 passed (105)
 ```
 
 **Verification:**
@@ -224,7 +224,7 @@ node --version  # Must be 18+
 - [ ] No console errors
 
 ✅ **Testing Complete:**
-- [ ] All unit tests passing (107 tests)
+- [ ] All unit tests passing (105 tests)
 - [ ] Coverage ≥80% across all metrics
 - [ ] All E2E tests passing (12 tests)
 - [ ] No test failures or timeouts

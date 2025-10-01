@@ -1,7 +1,6 @@
 'use client'
 
 import { ProductFeature, ProductResponse } from '@/lib/validators'
-import { useEffect, useState } from 'react'
 import SellerCard from './SellerCard'
 import StockBadge from './StockBadge'
 
@@ -11,12 +10,6 @@ interface BuyBoxProps {
 }
 
 export default function BuyBox({ product, disabled = false }: BuyBoxProps) {
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault()
     alert('Demo only - no actual purchase will be processed')
@@ -88,7 +81,7 @@ export default function BuyBox({ product, disabled = false }: BuyBoxProps) {
     <div className="space-y-4">
       {/* Main Buy Box */}
       <div
-        className={`bg-ml-bg border border-ml-border rounded p-4 space-y-4 ${mounted ? 'opacity-100' : 'opacity-0'}`}
+        className="bg-ml-bg border border-ml-border rounded p-4 space-y-4"
         data-testid="buybox"
       >
         {/* Color and options */}

@@ -1,28 +1,12 @@
 # Technical Decisions & Architecture Rationale
 
-This document outlines key technical decisions made during the development of the ML Challenge project, including rationale, trade-offs, and alternatives considered.
+This document outlines key technical decisions made during the development of the ML Challenge project, including rationale and trade-offs.
 
 ## Data Architecture
 
-### Single JSON Datasource with In-Memory Cache
+### Single JSON Datasource with In-Memory Cache by Requirements
 
 **Decision:** Use a single `data/products.json` file with intelligent in-memory caching.
-
-**Rationale:**
-- **Simplicity**: No database setup required for evaluation project
-- **Performance**: In-memory cache provides sub-millisecond response times
-- **Consistency**: Single source of truth eliminates data synchronization issues
-- **Portability**: Project runs immediately without external dependencies
-
-**Trade-offs:**
-- **Scalability**: Limited to memory capacity, not suitable for large datasets
-- **Persistence**: Cache resets on server restart, no data persistence
-- **Concurrency**: Single-threaded access, not suitable for high-concurrency scenarios
-
-**Alternatives Rejected:**
-- **Database (PostgreSQL/MongoDB)**: Added complexity for demo project
-- **External API**: Introduces network latency and external dependencies
-- **File system without cache**: Poor performance for repeated requests
 
 ## Validation & Error Handling
 
@@ -40,11 +24,6 @@ This document outlines key technical decisions made during the development of th
 - **Bundle Size**: Zod adds ~13KB to client bundle (acceptable for benefits)
 - **Performance**: Runtime validation adds minimal overhead (~0.1ms per request)
 - **Learning Curve**: Team needs familiarity with Zod schema syntax
-
-**Alternatives Rejected:**
-- **Manual validation**: Error-prone, inconsistent, no type safety
-- **Joi**: Larger bundle size, no TypeScript type generation
-- **Yup**: Less robust schema composition, weaker TypeScript integration
 
 **Error Envelope Format:**
 ```json
@@ -71,13 +50,7 @@ This document outlines key technical decisions made during the development of th
 
 **Trade-offs:**
 - **Complexity**: Mixed server/client component boundaries require careful planning
-- **Caching**: Server component caching strategies more complex than SPA
 - **Debugging**: Server/client boundary debugging requires understanding both environments
-
-**Alternatives Rejected:**
-- **Client-Side SPA**: Slower initial load, SEO challenges, larger bundle
-- **Traditional SSR**: Full page rehydration overhead, no selective hydration benefits
-- **Static Generation Only**: Wouldn't support dynamic product data properly
 
 **Client Islands Used:**
 - Image gallery navigation (keyboard/touch interactions)
@@ -100,11 +73,6 @@ This document outlines key technical decisions made during the development of th
 - **Development Speed**: Writing comprehensive tests adds initial development time
 - **Maintenance**: Tests require ongoing maintenance as features evolve
 - **Coverage vs Quality**: High coverage doesn't guarantee test quality or edge case coverage
-
-**Alternatives Rejected:**
-- **Lower threshold (60-70%)**: Insufficient for production-quality code
-- **No threshold**: Teams often neglect testing without enforcement
-- **100% coverage**: Diminishing returns, over-testing trivial code paths
 
 **Testing Layers:**
 1. **Unit Tests**: Individual functions, validators, error handling
@@ -134,10 +102,6 @@ This document outlines key technical decisions made during the development of th
 - **Design Constraints**: Some visual designs may need modification for accessibility
 - **Testing Complexity**: Requires testing with assistive technologies
 
-**Alternatives Rejected:**
-- **Minimal Accessibility**: Legal and ethical issues, poor user experience
-- **Retrofit Approach**: More expensive and error-prone than building accessibility in from start
-
 ## Performance Optimizations
 
 ### Next.js Image Component with Responsive Sizing
@@ -155,11 +119,6 @@ This document outlines key technical decisions made during the development of th
 - **Build Complexity**: Image optimization can increase build times
 - **Caching**: Requires proper cache headers for optimal performance
 
-**Alternatives Rejected:**
-- **Standard img tags**: No optimization, poor performance
-- **Client-side lazy loading**: More complex implementation, less effective
-- **Heavy image libraries**: Unnecessary bundle size for current needs
-
 ## Development Experience
 
 ### TypeScript Strict Mode with ESLint and Prettier
@@ -176,11 +135,6 @@ This document outlines key technical decisions made during the development of th
 - **Initial Setup**: Configuration and rule tuning requires upfront investment
 - **Learning Curve**: Team members need TypeScript proficiency
 - **Build Time**: Type checking adds to compilation time
-
-**Alternatives Rejected:**
-- **JavaScript Only**: No compile-time error detection, harder to maintain
-- **Loose TypeScript**: Defeats many benefits of type safety
-- **Manual Code Style**: Inconsistent formatting, time wasted in code reviews
 
 ## API Design
 
@@ -202,11 +156,6 @@ This document outlines key technical decisions made during the development of th
 - **Over-fetching**: REST can return more data than needed compared to GraphQL
 - **Multiple Requests**: May require multiple API calls for complex data requirements
 - **Versioning**: API versioning strategies need planning for future changes
-
-**Alternatives Rejected:**
-- **GraphQL**: Added complexity not justified for simple product display use case
-- **RPC Style**: Less cacheable, doesn't follow HTTP semantics
-- **Custom Protocol**: Would require custom tooling and documentation
 
 ## Summary
 

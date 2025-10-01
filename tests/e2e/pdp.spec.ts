@@ -101,7 +101,7 @@ class ProductDetailPage {
   }
 
   get mainContainer() {
-    return this.page.locator('main > div').first()
+    return this.page.locator('.grid.grid-cols-12').first()
   }
 
   // Actions
@@ -333,7 +333,7 @@ test.describe('Product Detail Page (PDP)', () => {
 
       // Test navigation back to home
       await notFoundPage.goHome()
-      await expect(page).toHaveURL('/')
+      await page.waitForURL('/', { timeout: 10000 })
     })
 
     test('should handle API errors gracefully', async ({ page }) => {

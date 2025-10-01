@@ -177,6 +177,26 @@ pnpm test:e2e:ui
 - Set up monitoring, logging, and error tracking
 - Configure CI/CD pipeline with automated deployments
 
+## Content Management
+
+### Editing Project Information
+
+The home page displays dynamic content from markdown files in the `content/` directory:
+
+- **Project Recap**: Edit `content/project-recap.md` to update the technical summary
+- **Cover Letter**: Edit `content/cover-letter.md` to customize the personal introduction
+
+After editing these files, restart the development server to see changes:
+
+```bash
+pnpm dev
+```
+
+The markdown content supports:
+- Standard Markdown formatting (headings, lists, emphasis)
+- Automatic HTML conversion with styled prose classes
+- Responsive design that works on mobile and desktop
+
 ## Screenshots & GIFs
 
 To capture project screenshots and demos:
