@@ -23,7 +23,7 @@ This project demonstrates a full-stack e-commerce implementation with authentic 
 
 ```bash
 # Clone and install
-git clone <repository>
+git clone https://github.com/aanunez96/ml-challenge.git
 cd ml-challenge
 pnpm install
 
