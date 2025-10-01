@@ -4,6 +4,7 @@ import { promises as fs } from 'fs'
 import path from 'path'
 import { remark } from 'remark'
 import html from 'remark-html'
+import Image from 'next/image'
 
 async function getProducts() {
   try {
@@ -35,32 +36,37 @@ export default async function Home() {
   return (
     <div className="bg-ml-bg-sub">
       {/* Hero Carousel */}
-      <div className="bg-blue-600 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 py-16">
+      <div className="relative overflow-hidden">
+        <div className="w-full">
           <div className="relative">
             {/* Main Hero Content */}
-            <div className="text-center text-white">
-              <h1 className="text-4xl md:text-6xl font-bold mb-4">LOS FAVORITOS</h1>
-              <h2 className="text-3xl md:text-5xl font-bold mb-8">DEL SÚPER EN LA CASA</h2>
-
-              {/* Delivery Badge */}
-              <div className="inline-flex items-center bg-white text-blue-600 px-6 py-3 rounded-full font-bold text-lg mb-8">
-                <svg className="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M19 7h-3V6a4 4 0 0 0-8 0v1H5a1 1 0 0 0-1 1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8a1 1 0 0 0-1-1zM10 6a2 2 0 0 1 4 0v1h-4V6zm8 13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V9h2v1a1 1 0 0 0 2 0V9h4v1a1 1 0 0 0 2 0V9h2v10z" />
-                </svg>
-                TU PEDIDO LLEGA MAÑANA
-              </div>
+            <div className="relative aspect-[16/6] sm:aspect-[16/5] lg:aspect-[16/4]">
+              <Image
+                src="https://http2.mlstatic.com/D_NQ_667221-MLA91540124681_092025-OO.jpg"
+                alt="Mercado Libre Hero Banner"
+                fill
+                className="object-cover w-full h-full"
+                priority
+                sizes="100vw"
+              />
+              
+              {/* Desktop Gradient Overlay - Bottom transition */}
+              <div className="hidden lg:block absolute bottom-0 left-0 right-0 h-50 bg-gradient-to-b from-transparent via-ml-primary/20 to-ml-bg-sub pointer-events-none"></div>
             </div>
 
             {/* Carousel Navigation Dots */}
-            <div className="flex justify-center space-x-2 mt-8">
-              {[...Array(6)].map((_, i) => (
-                <button
-                  key={i}
-                  className={`w-3 h-3 rounded-full ${i === 0 ? 'bg-white' : 'bg-white/50'}`}
-                  aria-label={`Go to slide ${i + 1}`}
-                />
-              ))}
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
+              <div className="flex justify-center space-x-2">
+                {[...Array(6)].map((_, i) => (
+                  <button
+                    key={i}
+                    className={`w-3 h-3 rounded-full transition-all duration-200 ${
+                      i === 0 ? 'bg-white shadow-lg' : 'bg-white/50 hover:bg-white/70'
+                    }`}
+                    aria-label={`Go to slide ${i + 1}`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -70,7 +76,7 @@ export default async function Home() {
       <div className="max-w-7xl mx-auto px-4 py-8">
         {/* Featured Products Section */}
         <div className="mb-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
             {products.map((product, index) => {
               const sectionTitles = [
                 'Lo quieres',
@@ -82,7 +88,7 @@ export default async function Home() {
               ]
 
               return (
-                <div key={product.id} className="space-y-2">
+                <div key={`product-${product.id}-${index}`} className="space-y-2">
                   {/* Section Title */}
                   <div className="text-lg font-bold text-gray-800 px-2">{sectionTitles[index]}</div>
                   {/* Product Card */}
@@ -123,7 +129,7 @@ export default async function Home() {
         {/* Second Product Row - More Recommendations */}
         <div className="mb-12">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">Recomendaciones para ti</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
             {products.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}

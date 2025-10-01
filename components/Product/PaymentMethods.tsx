@@ -86,11 +86,11 @@ export default function PaymentMethods({ methods }: PaymentMethodsProps) {
       ],
       cash: [
         {
-          logo: 'https://http2.mlstatic.com/storage/logos-api-admin/fec5f230-06ee-11ea-8e1e-273b5a374550-m.svg',
+          logo: 'https://http2.mlstatic.com/storage/logos-api-admin/54b0d9b0-eaf7-11eb-826e-6db365b9e0dd-m.svg',
           name: 'PagoFácil',
         },
         {
-          logo: 'https://http2.mlstatic.com/storage/logos-api-admin/443c34d0-571b-11ea-9d0f-c135b61316ba-m.svg',
+          logo: 'https://http2.mlstatic.com/storage/logos-api-admin/eba075a0-5cf4-11ec-ae75-df2bef173be2-m.svg',
           name: 'Rapipago',
         },
       ],

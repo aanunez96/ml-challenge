@@ -77,7 +77,7 @@ export default function Gallery({ images, productTitle }: GalleryProps) {
     <div className="w-full flex gap-4" data-testid="product-gallery">
       {/* Vertical Thumbnails */}
       {displayImages.length > 1 && (
-        <div className="xl:flex-shrink-0 w-16 hidden">
+        <div className="xl:flex-shrink-0 w-16 hidden xl:block">
           <div
             className="flex flex-col gap-2"
             role="group"

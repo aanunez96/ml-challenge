@@ -58,7 +58,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
       <div className="grid grid-cols-12 gap-6 bg-ml-bg p-6 rounded-lg shadow-ml-card">
         {/* Main Content Area - Gallery and Details */}
-        <div className="col-span-8">
+        <div className="col-span-12 xl:col-span-8">
           <div className="grid grid-cols-12 gap-6">
             {/* Gallery Section */}
             <div className="xl:col-span-7 col-span-12">
