@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { NextRequest } from 'next/server'
 import { GET } from '../../src/app/api/products/route'
+import { ProductResponse } from '../../lib/validators'
 import * as repo from '../../lib/repo'
 
 // Mock the repo module
@@ -226,7 +227,9 @@ describe('GET /api/products', () => {
       page: 1,
       total: 1,
     }
-    mockRepo.listProducts.mockResolvedValue(invalidResult as any)
+    mockRepo.listProducts.mockResolvedValue(
+      invalidResult as unknown as { items: ProductResponse[]; page: number; total: number }
+    )
 
     const request = createMockRequest()
     const response = await GET(request)

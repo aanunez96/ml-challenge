@@ -32,9 +32,9 @@ async function getProduct(id: string): Promise<ProductResponse | null> {
 }
 
 interface ProductPageProps {
-  params: {
+  params: Promise<{
     id: string
-  }
+  }>
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {

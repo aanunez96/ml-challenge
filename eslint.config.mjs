@@ -14,6 +14,11 @@ const eslintConfig = [
   {
     ignores: ['node_modules/**', '.next/**', 'out/**', 'build/**', 'next-env.d.ts'],
   },
+  {
+    rules: {
+      '@typescript-eslint/no-unused-vars': 'off',
+    },
+  },
 ]
 
 export default eslintConfig

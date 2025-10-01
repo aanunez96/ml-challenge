@@ -51,7 +51,7 @@ export default function ProductDescription({ description }: ProductDescriptionPr
           aria-expanded={isExpanded}
           data-testid="description-content"
         >
-          {description}
+          {displayDescription}
         </div>
 
         {shouldShowToggle && (

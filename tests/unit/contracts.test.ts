@@ -5,7 +5,7 @@ import productsData from '../../data/products.json'
 describe('Product Data Contracts', () => {
   describe('Schema Validation - Positive Cases', () => {
     it('should validate all sample products successfully', () => {
-      productsData.forEach((product: any, index: number) => {
+      productsData.forEach((product: unknown, index: number) => {
         const result = ProductResponseSchema.safeParse(product)
 
         if (!result.success) {
@@ -221,7 +221,7 @@ describe('Product Data Contracts', () => {
         images: ['https://example.com/image.jpg'],
         price: {
           amount: 99.99,
-          currency: 'EUR' as any, // Not in allowed enum
+          currency: 'EUR' as 'USD' | 'EUR', // Not in allowed enum
         },
         paymentMethods: [{ label: 'Credit Card' }],
         seller: {
@@ -268,7 +268,9 @@ describe('Product Data Contracts', () => {
 
   describe('Edge Cases Coverage', () => {
     it('should validate out-of-stock product (stock = 0)', () => {
-      const outOfStockProduct = productsData.find((p: any) => p.stock === 0)
+      const outOfStockProduct = productsData.find(
+        (p: unknown) => (p as Record<string, unknown>).stock === 0
+      )
       expect(outOfStockProduct).toBeDefined()
 
       const result = ProductResponseSchema.safeParse(outOfStockProduct)
@@ -277,7 +279,9 @@ describe('Product Data Contracts', () => {
     })
 
     it('should validate low-rated product', () => {
-      const lowRatedProduct = productsData.find((p: any) => p.rating.average < 3.0)
+      const lowRatedProduct = productsData.find(
+        (p: unknown) => (p as Record<string, { average: number }>).rating.average < 3.0
+      )
       expect(lowRatedProduct).toBeDefined()
 
       const result = ProductResponseSchema.safeParse(lowRatedProduct)
@@ -286,8 +290,12 @@ describe('Product Data Contracts', () => {
     })
 
     it('should validate products with different currency types', () => {
-      const mxnProduct = productsData.find((p: any) => p.price.currency === 'MXN')
-      const usdProduct = productsData.find((p: any) => p.price.currency === 'USD')
+      const mxnProduct = productsData.find(
+        (p: unknown) => (p as Record<string, { currency: string }>).price.currency === 'MXN'
+      )
+      const usdProduct = productsData.find(
+        (p: unknown) => (p as Record<string, { currency: string }>).price.currency === 'USD'
+      )
 
       expect(mxnProduct).toBeDefined()
       expect(usdProduct).toBeDefined()
@@ -300,9 +308,15 @@ describe('Product Data Contracts', () => {
     })
 
     it('should validate products with different flag combinations', () => {
-      const fullWithShipping = productsData.find((p: any) => p.flags?.full && p.flags?.freeShipping)
+      const fullWithShipping = productsData.find(
+        (p: unknown) =>
+          (p as Record<string, { full?: boolean; freeShipping?: boolean }>).flags?.full &&
+          (p as Record<string, { full?: boolean; freeShipping?: boolean }>).flags?.freeShipping
+      )
       const fullWithoutShipping = productsData.find(
-        (p: any) => p.flags?.full && !p.flags?.freeShipping
+        (p: unknown) =>
+          (p as Record<string, { full?: boolean; freeShipping?: boolean }>).flags?.full &&
+          !(p as Record<string, { full?: boolean; freeShipping?: boolean }>).flags?.freeShipping
       )
 
       expect(fullWithShipping).toBeDefined()

@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useEffect } from 'react'
 
 export default function ProductError({
@@ -68,14 +69,14 @@ export default function ProductError({
 
           <p className="text-sm" style={{ color: 'var(--marketplace-muted)' }}>
             If the problem persists,{' '}
-            <a
+            <Link
               href="/"
               className="underline focus-ring rounded"
               style={{ color: 'var(--marketplace-accent)' }}
               data-testid="error-home-link"
             >
               go back home
-            </a>
+            </Link>
           </p>
         </div>
 

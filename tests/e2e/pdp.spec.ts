@@ -435,7 +435,7 @@ test.describe('Product Detail Page (PDP)', () => {
   })
 
   test.describe('Performance', () => {
-    test('should load within acceptable time', async ({ page }) => {
+    test('should load within acceptable time', async ({ page: _page }) => {
       const startTime = Date.now()
 
       await pdpPage.goto(TEST_DATA.EXISTING_PRODUCT_ID)

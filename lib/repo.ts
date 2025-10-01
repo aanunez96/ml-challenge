@@ -48,15 +48,15 @@ export class ProductRepository {
     return products.find((p) => p.id === id) || null
   }
 
-  async create(data: any): Promise<ProductResponse> {
+  async create(_data: unknown): Promise<ProductResponse> {
     throw new Error('Create operation not supported in read-only mode')
   }
 
-  async update(id: string, data: any): Promise<ProductResponse | null> {
+  async update(_id: string, _data: unknown): Promise<ProductResponse | null> {
     throw new Error('Update operation not supported in read-only mode')
   }
 
-  async delete(id: string): Promise<boolean> {
+  async delete(_id: string): Promise<boolean> {
     throw new Error('Delete operation not supported in read-only mode')
   }
 }

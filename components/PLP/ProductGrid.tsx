@@ -201,7 +201,7 @@ export default function ProductGrid({ products, loading = false }: ProductGridPr
         </div>
         <h3 className="text-lg font-medium text-gray-900 mb-2">No products found</h3>
         <p className="text-gray-500 max-w-md mx-auto">
-          Try adjusting your filters or search terms to find what you're looking for.
+          Try adjusting your filters or search terms to find what you&apos;re looking for.
         </p>
       </div>
     )

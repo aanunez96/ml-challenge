@@ -290,7 +290,7 @@ describe('API Route Handlers', () => {
     it('should handle missing params object', async () => {
       const response = await getProductHandler(
         new NextRequest('http://localhost:3000/api/products/test-id'),
-        {} as any // Missing params
+        {} as { params: Promise<{ id: string }> } // Missing params
       )
 
       expect(response.status).toBe(500)
@@ -299,12 +299,10 @@ describe('API Route Handlers', () => {
       expect(body.error.code).toBe('INTERNAL')
     })
 
-    it('should handle undefined product ID in params', async () => {
-      mockedRepo.getProductById.mockResolvedValue(null)
-
+    it('should handle undefined product ID gracefully', async () => {
       const response = await getProductHandler(
         new NextRequest('http://localhost:3000/api/products/test-id'),
-        { params: Promise.resolve({ id: undefined as any }) }
+        { params: Promise.resolve({ id: undefined as unknown as string }) }
       )
 
       expect(response.status).toBe(404) // getProductById handles undefined gracefully

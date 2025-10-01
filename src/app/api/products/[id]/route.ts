@@ -34,7 +34,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
   }
 }
 
-export async function PUT(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+export async function PUT(_request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   return NextResponse.json(
     {
       error: { code: 'NOT_IMPLEMENTED', message: 'PUT operation not supported in read-only mode' },
@@ -44,7 +44,7 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
 }
 
 export async function DELETE(
-  request: NextRequest,
+  _request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   return NextResponse.json(

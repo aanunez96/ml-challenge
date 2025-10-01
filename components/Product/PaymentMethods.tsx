@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 interface PaymentMethod {
   label: string
   note?: string
@@ -46,7 +48,7 @@ export default function PaymentMethods({ methods }: PaymentMethodsProps) {
   )
 
   // Enhanced logo mapping to match actual product data
-  const getPaymentLogos = (category: string, methods: PaymentMethod[]) => {
+  const getPaymentLogos = (category: string) => {
     const logoSets = {
       credit: [
         {
@@ -132,8 +134,15 @@ export default function PaymentMethods({ methods }: PaymentMethodsProps) {
         <div className="mb-4">
           <h4 className="text-sm font-medium mb-2 text-ml-text">Meses sin Tarjeta</h4>
           <div className="flex items-center gap-2">
-            {getPaymentLogos('digital', groupedMethods.digital).map((logo, index) => (
-              <img key={index} src={logo.logo} alt={logo.name} className="h-6" />
+            {getPaymentLogos('digital').map((logo, index) => (
+              <Image
+                key={index}
+                src={logo.logo}
+                alt={logo.name}
+                width={24}
+                height={24}
+                className="h-6 w-auto"
+              />
             ))}
             <div className="ml-2">
               {groupedMethods.digital.map((method, index) => (
@@ -152,8 +161,15 @@ export default function PaymentMethods({ methods }: PaymentMethodsProps) {
         <div className="mb-4">
           <h4 className="text-sm font-medium mb-2 text-ml-text">Tarjetas de crédito</h4>
           <div className="flex flex-wrap gap-2 mb-2">
-            {getPaymentLogos('credit', groupedMethods.credit).map((logo, index) => (
-              <img key={index} src={logo.logo} alt={logo.name} className="h-6" />
+            {getPaymentLogos('credit').map((logo, index) => (
+              <Image
+                key={index}
+                src={logo.logo}
+                alt={logo.name}
+                width={24}
+                height={24}
+                className="h-6 w-auto"
+              />
             ))}
           </div>
           {groupedMethods.credit.map((method, index) => (
@@ -169,8 +185,15 @@ export default function PaymentMethods({ methods }: PaymentMethodsProps) {
         <div className="mb-4">
           <h4 className="text-sm font-medium mb-2 text-ml-text">Tarjetas de débito</h4>
           <div className="flex flex-wrap gap-2">
-            {getPaymentLogos('debit', groupedMethods.debit || []).map((logo, index) => (
-              <img key={index} src={logo.logo} alt={logo.name} className="h-6" />
+            {getPaymentLogos('debit').map((logo, index) => (
+              <Image
+                key={index}
+                src={logo.logo}
+                alt={logo.name}
+                width={24}
+                height={24}
+                className="h-6 w-auto"
+              />
             ))}
           </div>
         </div>
@@ -181,8 +204,15 @@ export default function PaymentMethods({ methods }: PaymentMethodsProps) {
         <div className="mb-4">
           <h4 className="text-sm font-medium mb-2 text-ml-text">Efectivo</h4>
           <div className="flex flex-wrap gap-2 mb-2">
-            {getPaymentLogos('cash', groupedMethods.cash).map((logo, index) => (
-              <img key={index} src={logo.logo} alt={logo.name} className="h-6" />
+            {getPaymentLogos('cash').map((logo, index) => (
+              <Image
+                key={index}
+                src={logo.logo}
+                alt={logo.name}
+                width={24}
+                height={24}
+                className="h-6 w-auto"
+              />
             ))}
           </div>
           {groupedMethods.cash.map((method, index) => (

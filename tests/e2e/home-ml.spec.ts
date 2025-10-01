@@ -97,7 +97,7 @@ test.describe('Home Page - ML Style Homepage', () => {
   test.describe('Desktop Layout', () => {
     test.use({ viewport: TEST_DATA.VIEWPORT_DESKTOP })
 
-    test('should display all main homepage sections', async ({ page }) => {
+    test('should display all main homepage sections', async ({ page: _page }) => {
       await homePage.goto()
       await homePage.waitForLoad()
 
@@ -114,7 +114,7 @@ test.describe('Home Page - ML Style Homepage', () => {
       await homePage.assertInformationSections()
     })
 
-    test('should have working product cards', async ({ page }) => {
+    test('should have working product cards', async ({ page: _page }) => {
       await homePage.goto()
       await homePage.waitForLoad()
 
@@ -122,7 +122,7 @@ test.describe('Home Page - ML Style Homepage', () => {
       await homePage.assertProductCard(0)
     })
 
-    test('should navigate to product detail on card click', async ({ page }) => {
+    test('should navigate to product detail on card click', async ({ page: _page }) => {
       await homePage.goto()
       await homePage.waitForLoad()
 
@@ -136,7 +136,7 @@ test.describe('Home Page - ML Style Homepage', () => {
   test.describe('Mobile Layout', () => {
     test.use({ viewport: TEST_DATA.VIEWPORT_MOBILE })
 
-    test('should show mobile-optimized layout', async ({ page }) => {
+    test('should show mobile-optimized layout', async ({ page: _page }) => {
       await homePage.goto()
       await homePage.waitForLoad()
 
@@ -151,7 +151,7 @@ test.describe('Home Page - ML Style Homepage', () => {
       expect(cardCount).toBeGreaterThan(0)
     })
 
-    test('should have touch-friendly product cards', async ({ page }) => {
+    test('should have touch-friendly product cards', async ({ page: _page }) => {
       await homePage.goto()
       await homePage.waitForLoad()
 

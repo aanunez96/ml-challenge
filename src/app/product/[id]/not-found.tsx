@@ -23,7 +23,7 @@ export default function ProductNotFound() {
           </div>
           <h1 className="text-2xl font-bold text-gray-900 mb-2">Product Not Found</h1>
           <p className="text-gray-600 mb-8">
-            Sorry, the product you're looking for doesn't exist or may have been removed.
+            Sorry, the product you&apos;re looking for doesn&apos;t exist or may have been removed.
           </p>
         </div>
 
