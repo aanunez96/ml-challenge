@@ -38,6 +38,15 @@ Visit [http://localhost:3000](http://localhost:3000) to see the application.
 
 For detailed setup instructions and troubleshooting, see [run.md](./run.md).
 
+## Live Demo
+
+🌐 **Production Deployment**: [https://aanunez-ml-challenge.netlify.app/](https://aanunez-ml-challenge.netlify.app/)
+
+Deployed on Netlify with:
+- Automatic builds from Git
+- Server-side rendering support
+- Optimized static assets
+
 ## Architecture
 
 ### Tech Stack
