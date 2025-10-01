@@ -17,7 +17,7 @@ export default function Price({ price }: PriceProps) {
     return {
       integer: formattedInteger,
       decimal: decimalPart.toString().padStart(2, '0'),
-      currency
+      currency,
     }
   }
 

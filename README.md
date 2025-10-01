@@ -1,226 +1,146 @@
-# ML Challenge - Product Detail Page
+# ML Challenge - E-commerce Platform
 
-A modern Next.js e-commerce product detail page implementation featuring server-side rendering, comprehensive testing, and accessibility-first design.
+A modern Next.js e-commerce platform inspired by Mercado Libre, featuring server-side rendering, comprehensive testing, and production-ready architecture.
 
-## Project Overview
+## Overview
 
-This project implements a production-ready Product Detail Page (PDP) using Next.js App Router with TypeScript and Tailwind CSS. It features:
+This project demonstrates a full-stack e-commerce implementation with authentic Mercado Libre design patterns, including:
 
-- **Modern Stack**: Next.js 15 App Router, React 19, TypeScript, Tailwind CSS 4
-- **API Routes**: RESTful endpoints backed by JSON datasource with in-memory caching
-- **Server Components**: RSC-first architecture with minimal client hydration
-- **Comprehensive Testing**: Unit, API, and E2E tests with ≥80% coverage enforcement
-- **Accessibility**: WCAG compliant with keyboard navigation and screen reader support
-- **Performance**: Optimized images, lazy loading, and efficient rendering
+- **ML-Style Homepage**: Hero carousel, horizontal product sections, and authentic branding
+- **Product Detail Pages**: Complete product information with gallery, pricing, and seller details
+- **RESTful API**: JSON-backed endpoints with validation and error handling
+- **Modern Stack**: Next.js 15, React 19, TypeScript, Tailwind CSS 4
+- **Comprehensive Testing**: 105+ unit tests and E2E coverage with ≥80% threshold
 
-## Stack & Key Decisions
-
-- **Output Validation**: Zod schemas ensure type safety and runtime validation across API boundaries
-- **Error Handling**: Consistent error envelope pattern with proper HTTP status codes and structured responses
-- **Data Layer**: Single JSON datasource with intelligent in-memory caching for optimal performance
-- **Architecture**: React Server Components with selective client islands for interactivity
-- **Accessibility**: Semantic HTML, ARIA attributes, keyboard navigation, and screen reader optimization
-- **Testing**: Vitest + Playwright with 80% coverage threshold enforcement in CI/CD pipeline
-
-## Quickstart
+## Quick Start
 
 ### Prerequisites
+
 - Node.js 18+
 - pnpm (recommended) or npm
 
-### Installation & Development
+### Setup & Development
 
 ```bash
-# Install dependencies
+# Clone and install
+git clone <repository>
+cd ml-challenge
 pnpm install
 
-# Start development server
+# Environment setup
+cp .env.example .env.local
+
+# Start development
 pnpm dev
-
-# Run unit tests
-pnpm test
-
-# Run test coverage (≥80% enforced)
-pnpm coverage
-
-# One-time: Install Playwright browsers for E2E tests
-npx playwright install --with-deps
-
-# Run E2E tests
-pnpm test:e2e
 ```
 
 Visit [http://localhost:3000](http://localhost:3000) to see the application.
 
+For detailed setup instructions and troubleshooting, see [run.md](./run.md).
+
 ## Architecture
+
+### Tech Stack
+
+- **Frontend**: Next.js 15 App Router, React 19, TypeScript
+- **Styling**: Tailwind CSS 4 with custom ML theme system
+- **Data**: JSON datasource with in-memory caching
+- **Validation**: Zod schemas for type safety
+- **Testing**: Vitest (unit) + Playwright (E2E)
+
+### Project Structure
 
 ```
 ml-challenge/
-├── app/                 # Next.js App Router
-│   ├── api/products/    # API route handlers
-│   ├── product/[id]/    # Product detail pages (RSC)
-│   ├── globals.css      # Global styles
-│   └── layout.tsx       # Root layout
-├── components/          # React components
-│   └── Product/         # Product-related components
-├── lib/                 # Shared utilities
-│   ├── validators.ts    # Zod schemas
-│   ├── repo.ts         # Data access layer
-│   ├── errors.ts       # Custom error classes
-│   └── api-client.ts   # Frontend API client
-├── data/               # JSON datasource
-│   └── products.json   # Product catalog
-├── tests/              # Test suites
-│   ├── unit/           # Unit & API tests
-│   └── e2e/            # Playwright E2E tests
-├── docs/               # Documentation
-└── public/docs/        # Screenshots & assets
+├── src/app/             # Next.js App Router pages & API
+├── components/          # React components (Layout, Product, PLP)
+├── lib/                 # Utilities, validation, data access
+├── content/             # Markdown content for homepage
+├── data/                # JSON product datasource
+├── tests/               # Unit and E2E test suites
+└── styles/              # Global styles and theme
 ```
 
-### Component Roles
-- `app/`: Next.js App Router with API routes and RSC pages
-- `components/`: Reusable React components organized by feature
-- `lib/`: Business logic, validation, and data access abstractions
-- `data/`: Static JSON datasource with product catalog
-- `tests/`: Comprehensive test coverage (unit, integration, E2E)
-- `docs/`: Technical documentation and API references
+## Features
 
-## Data Contracts
+### Homepage (ML-Inspired)
 
-See [docs/contracts.md](docs/contracts.md) for detailed schema documentation including:
-- Product response structure
-- Validation rules and constraints
-- API request/response examples
-- Error response format
+- Authentic Mercado Libre header with search and navigation
+- Hero carousel with promotional content
+- Horizontal product sections with dynamic titles
+- Project overview and developer information
 
-## API Endpoints
+### Product Detail Pages
 
-### GET /api/products/:id
-Retrieve a single product by ID with full details.
+- Responsive image gallery with thumbnail navigation
+- Complete product information (pricing, rating, stock)
+- Seller details and payment methods
+- Accessibility-first design with keyboard navigation
 
-```bash
-curl http://localhost:3000/api/products/premium-laptop-mx2024
-```
+### API Endpoints
 
-**Optional: GET /api/products**
-List products with optional search and pagination.
+- `GET /api/products` - List products with optional search/pagination
+- `GET /api/products/:id` - Individual product details
+- Comprehensive error handling and validation
 
-```bash
-curl "http://localhost:3000/api/products?q=laptop&page=1&limit=10"
-```
-
-For complete API documentation with examples, see:
-- [docs/api.http](docs/api.http) - HTTP client examples
-- [docs/openapi.json](docs/openapi.json) - OpenAPI specification
-
-## Testing & Coverage
+## Testing
 
 ### Running Tests
 
 ```bash
-# Unit tests (watch mode)
+# Unit tests with coverage
 pnpm test
-
-# Coverage report with thresholds
 pnpm coverage
 
-# E2E tests
+# E2E tests (requires running dev server)
 pnpm test:e2e
-
-# Visual E2E test runner
-pnpm test:e2e:ui
 ```
 
 ### Coverage Requirements
-- **Threshold**: ≥80% for lines, statements, functions, and branches
-- **Enforcement**: Build fails if coverage drops below threshold
-- **Configuration**: See `vitest.config.ts` for coverage settings
-- **Reports**: HTML coverage reports generated in `coverage/` directory
 
-### Test Structure
-- **Unit Tests**: API routes, validators, error handling, repository layer
-- **Integration Tests**: Full API request/response cycles
-- **E2E Tests**: Complete user workflows including PDP navigation, error states, and accessibility
+- **Threshold**: ≥80% across all metrics
+- **Current**: 96.77% overall coverage
+- **Test Count**: 105 unit tests + 22 E2E tests
 
-## Accessibility & Performance
+## Development
 
-### Accessibility Features
-- Semantic HTML structure with proper heading hierarchy
-- ARIA labels and live regions for dynamic content
-- Keyboard navigation support for image gallery
-- Screen reader optimized product information
-- High contrast ratios and focus indicators
-- Alt text for all product images
-
-### Performance Optimizations
-- Next.js Image component with responsive sizing
-- Server-side rendering for fast initial page load
-- Minimal client-side JavaScript bundle
-- In-memory caching for API responses
-- Optimized Tailwind CSS with unused styles purged
-
-## Known Limitations
-
-- **Data Source**: Static JSON file (production would use database)
-- **Authentication**: No user authentication or session management
-- **Cart Functionality**: Display-only, no add-to-cart implementation
-- **Image Storage**: External URLs only (no local image optimization)
-- **Search**: Basic string matching (production would use full-text search)
-
-## Next Steps
-
-- Implement user authentication and session management
-- Add shopping cart functionality and checkout flow
-- Integrate with payment processing and inventory systems
-- Implement advanced search with filters and sorting
-- Add product reviews and recommendation engine
-- Set up monitoring, logging, and error tracking
-- Configure CI/CD pipeline with automated deployments
-
-## Content Management
-
-### Editing Project Information
-
-The home page displays dynamic content from markdown files in the `content/` directory:
-
-- **Project Recap**: Edit `content/project-recap.md` to update the technical summary
-- **Cover Letter**: Edit `content/cover-letter.md` to customize the personal introduction
-
-After editing these files, restart the development server to see changes:
+### Scripts
 
 ```bash
-pnpm dev
+pnpm dev          # Development server
+pnpm build        # Production build
+pnpm test         # Unit tests (watch mode)
+pnpm coverage     # Coverage report
+pnpm test:e2e     # E2E tests
+pnpm lint         # ESLint
+pnpm format       # Prettier formatting
 ```
 
-The markdown content supports:
-- Standard Markdown formatting (headings, lists, emphasis)
-- Automatic HTML conversion with styled prose classes
-- Responsive design that works on mobile and desktop
+### Environment Variables
 
-## Screenshots & GIFs
+See [.env.example](./.env.example) for required configuration.
 
-To capture project screenshots and demos:
+## Documentation
 
-```bash
-# Take screenshots of key pages
-# Save as: public/docs/screenshot-home.png
-# Save as: public/docs/screenshot-pdp.png
+- **[run.md](./run.md)** - Detailed setup and troubleshooting guide
+- **[decisions.md](./decisions.md)** - Technical decisions and architecture rationale
 
-# Record PDP interaction demo
-# Save as: public/docs/pdp-demo.gif
-```
+## Key Technical Decisions
 
-**Current Assets** (placeholders):
-- [Home Page Screenshot](public/docs/screenshot-home.png)
-- [Product Detail Page Screenshot](public/docs/screenshot-pdp.png)
-- [PDP Demo GIF](public/docs/pdp-demo.gif)
+For detailed rationale and trade-offs, see [decisions.md](./decisions.md). Key highlights:
 
-## Contributing
+- **Server Components First**: RSC architecture for optimal performance
+- **Zod Validation**: Runtime type safety with structured error handling
+- **In-Memory Caching**: JSON datasource with intelligent caching layer
+- **Accessibility**: WCAG compliance with semantic HTML and ARIA support
+- **ML Design System**: Custom Tailwind theme matching Mercado Libre aesthetics
 
-1. Follow existing code style and conventions
-2. Run tests and ensure coverage threshold is met
-3. Update documentation for API or architecture changes
-4. Test accessibility with screen reader and keyboard navigation
+## Performance & Quality
+
+- **Bundle Optimization**: Minimal client JavaScript, optimized images
+- **Accessibility**: Screen reader support, keyboard navigation
+- **Code Quality**: TypeScript strict mode, ESLint, Prettier
+- **Testing**: Comprehensive coverage with CI/CD quality gates
 
 ## License
 

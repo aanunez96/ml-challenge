@@ -91,7 +91,7 @@ export default function ProductError({
               className="mt-2 text-xs p-3 rounded overflow-auto"
               style={{
                 color: '#EF4444',
-                backgroundColor: 'rgba(239, 68, 68, 0.05)'
+                backgroundColor: 'rgba(239, 68, 68, 0.05)',
               }}
             >
               {error.message}

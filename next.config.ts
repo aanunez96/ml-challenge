@@ -1,4 +1,4 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
   images: {
@@ -6,9 +6,9 @@ const nextConfig: NextConfig = {
       { protocol: 'https', hostname: 'source.unsplash.com' },
       { protocol: 'https', hostname: 'images.unsplash.com' },
       { protocol: 'https', hostname: 'picsum.photos' },
-      { protocol: 'https', hostname: 'http2.mlstatic.com' }
-    ]
+      { protocol: 'https', hostname: 'http2.mlstatic.com' },
+    ],
   },
-};
+}
 
-export default nextConfig;
+export default nextConfig

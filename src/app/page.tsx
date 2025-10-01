@@ -40,17 +40,13 @@ export default async function Home() {
           <div className="relative">
             {/* Main Hero Content */}
             <div className="text-center text-white">
-              <h1 className="text-4xl md:text-6xl font-bold mb-4">
-                LOS FAVORITOS
-              </h1>
-              <h2 className="text-3xl md:text-5xl font-bold mb-8">
-                DEL SÚPER EN LA CASA
-              </h2>
+              <h1 className="text-4xl md:text-6xl font-bold mb-4">LOS FAVORITOS</h1>
+              <h2 className="text-3xl md:text-5xl font-bold mb-8">DEL SÚPER EN LA CASA</h2>
 
               {/* Delivery Badge */}
               <div className="inline-flex items-center bg-white text-blue-600 px-6 py-3 rounded-full font-bold text-lg mb-8">
                 <svg className="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M19 7h-3V6a4 4 0 0 0-8 0v1H5a1 1 0 0 0-1 1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8a1 1 0 0 0-1-1zM10 6a2 2 0 0 1 4 0v1h-4V6zm8 13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V9h2v1a1 1 0 0 0 2 0V9h4v1a1 1 0 0 0 2 0V9h2v10z"/>
+                  <path d="M19 7h-3V6a4 4 0 0 0-8 0v1H5a1 1 0 0 0-1 1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8a1 1 0 0 0-1-1zM10 6a2 2 0 0 1 4 0v1h-4V6zm8 13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V9h2v1a1 1 0 0 0 2 0V9h4v1a1 1 0 0 0 2 0V9h2v10z" />
                 </svg>
                 TU PEDIDO LLEGA MAÑANA
               </div>
@@ -72,7 +68,6 @@ export default async function Home() {
 
       {/* Product Sections */}
       <div className="max-w-7xl mx-auto px-4 py-8">
-
         {/* Featured Products Section */}
         <div className="mb-12">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
@@ -83,15 +78,13 @@ export default async function Home() {
                 'Visto recientemente',
                 'Tu auto te espera',
                 'Menos de $500',
-                'Más vendidos'
+                'Más vendidos',
               ]
 
               return (
                 <div key={product.id} className="space-y-2">
                   {/* Section Title */}
-                  <div className="text-lg font-bold text-gray-800 px-2">
-                    {sectionTitles[index]}
-                  </div>
+                  <div className="text-lg font-bold text-gray-800 px-2">{sectionTitles[index]}</div>
                   {/* Product Card */}
                   <ProductCard product={product} />
                 </div>
@@ -144,7 +137,8 @@ export default async function Home() {
 export async function generateMetadata() {
   return {
     title: 'ML Challenge Store - Discover Amazing Products',
-    description: 'Discover amazing products in our marketplace. Browse electronics, computers, gaming gear, smartphones and more with fast shipping and great prices.',
+    description:
+      'Discover amazing products in our marketplace. Browse electronics, computers, gaming gear, smartphones and more with fast shipping and great prices.',
     keywords: 'marketplace, products, electronics, computers, gaming, smartphones, online shopping',
   }
 }

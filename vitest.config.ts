@@ -17,7 +17,7 @@ export default defineConfig({
       '**/*.config.*',
     ],
     env: {
-      NODE_ENV: 'test'
+      NODE_ENV: 'test',
     },
     coverage: {
       provider: 'v8',
@@ -41,8 +41,8 @@ export default defineConfig({
         lines: 80,
         statements: 80,
         functions: 80,
-        branches: 80
-      }
+        branches: 80,
+      },
     },
   },
   resolve: {

@@ -9,10 +9,13 @@ import { notFound } from 'next/navigation'
 
 async function getProduct(id: string): Promise<ProductResponse | null> {
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/products/${id}`, {
-      cache: 'force-cache',
-      next: { revalidate: 3600 } // Revalidate every hour
-    })
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/products/${id}`,
+      {
+        cache: 'force-cache',
+        next: { revalidate: 3600 }, // Revalidate every hour
+      }
+    )
 
     if (!response.ok) {
       if (response.status === 404) {
@@ -59,10 +62,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
           <div className="grid grid-cols-12 gap-6">
             {/* Gallery Section */}
             <div className="xl:col-span-7 col-span-12">
-              <Gallery
-                images={product.images}
-                productTitle={product.title}
-              />
+              <Gallery images={product.images} productTitle={product.title} />
             </div>
 
             {/* Product Details Section */}
@@ -79,9 +79,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 {/* Rating and Stock */}
                 <div className="flex items-center gap-4 mb-2">
                   <ReviewsSummary rating={product.rating} />
-                  <span className="text-xs text-ml-muted">
-                    | {product.stock} disponibles
-                  </span>
+                  <span className="text-xs text-ml-muted">| {product.stock} disponibles</span>
                 </div>
               </div>
 
@@ -101,10 +99,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
         {/* Sidebar - Buy Box and Payment Methods */}
         <div className="xl:col-span-4 col-span-12">
           <div className="sticky top-4 space-y-4">
-            <BuyBox
-              product={product}
-              disabled={product.stock === 0}
-            />
+            <BuyBox product={product} disabled={product.stock === 0} />
             <PaymentMethods methods={product.paymentMethods} />
           </div>
         </div>
@@ -120,7 +115,7 @@ export async function generateMetadata({ params }: ProductPageProps) {
   if (!product) {
     return {
       title: 'Product Not Found',
-      description: 'The requested product could not be found.'
+      description: 'The requested product could not be found.',
     }
   }
 
@@ -131,6 +126,6 @@ export async function generateMetadata({ params }: ProductPageProps) {
       title: product.title,
       description: product.description.slice(0, 160),
       images: product.images.slice(0, 1),
-    }
+    },
   }
 }

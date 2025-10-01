@@ -22,7 +22,7 @@ export default function ProductLoading() {
               className="aspect-[4/3] rounded-lg mb-4"
               style={{
                 backgroundColor: 'var(--marketplace-border)',
-                borderRadius: 'var(--radius-12)'
+                borderRadius: 'var(--radius-12)',
               }}
             />
             {/* Thumbnails skeleton */}
@@ -103,7 +103,7 @@ export default function ProductLoading() {
                     className="h-16 rounded border"
                     style={{
                       backgroundColor: 'var(--marketplace-bg)',
-                      borderColor: 'var(--marketplace-border)'
+                      borderColor: 'var(--marketplace-border)',
                     }}
                   />
                 ))}
@@ -115,7 +115,7 @@ export default function ProductLoading() {
               className="p-4 rounded border"
               style={{
                 backgroundColor: 'var(--marketplace-bg)',
-                borderColor: 'var(--marketplace-border)'
+                borderColor: 'var(--marketplace-border)',
               }}
             >
               <div className="flex items-start gap-3">
@@ -142,7 +142,7 @@ export default function ProductLoading() {
               style={{
                 backgroundColor: 'var(--marketplace-bg)',
                 borderRadius: 'var(--radius-12)',
-                boxShadow: 'var(--shadow-card)'
+                boxShadow: 'var(--shadow-card)',
               }}
             >
               {/* Button skeletons */}

@@ -3,16 +3,13 @@ import { getProductById } from '@/lib/repo'
 import { ProductResponseSchema } from '@/lib/validators'
 import { notFoundResponse, internalErrorResponse } from '@/lib/errors'
 
-export async function GET(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
+export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const { id } = await params
-    
+
     // Get product from repository
     const product = await getProductById(id)
-    
+
     if (!product) {
       return notFoundResponse(`Product with id '${id}' not found`)
     }
@@ -37,12 +34,11 @@ export async function GET(
   }
 }
 
-export async function PUT(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
+export async function PUT(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   return NextResponse.json(
-    { error: { code: 'NOT_IMPLEMENTED', message: 'PUT operation not supported in read-only mode' } },
+    {
+      error: { code: 'NOT_IMPLEMENTED', message: 'PUT operation not supported in read-only mode' },
+    },
     { status: 501 }
   )
 }
@@ -52,7 +48,12 @@ export async function DELETE(
   { params }: { params: Promise<{ id: string }> }
 ) {
   return NextResponse.json(
-    { error: { code: 'NOT_IMPLEMENTED', message: 'DELETE operation not supported in read-only mode' } },
+    {
+      error: {
+        code: 'NOT_IMPLEMENTED',
+        message: 'DELETE operation not supported in read-only mode',
+      },
+    },
     { status: 501 }
   )
 }

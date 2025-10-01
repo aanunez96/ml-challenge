@@ -8,18 +8,18 @@ import { z } from 'zod'
 const ListProductsQuerySchema = z.object({
   q: z.string().optional(),
   page: z.coerce.number().int().min(1).optional().default(1),
-  limit: z.coerce.number().int().min(1).max(100).optional().default(12)
+  limit: z.coerce.number().int().min(1).max(100).optional().default(12),
 })
 
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url)
-    
+
     // Parse and validate query parameters
     const queryResult = ListProductsQuerySchema.safeParse({
       q: searchParams.get('q') || undefined,
       page: searchParams.get('page') || undefined,
-      limit: searchParams.get('limit') || undefined
+      limit: searchParams.get('limit') || undefined,
     })
 
     if (!queryResult.success) {
@@ -33,7 +33,7 @@ export async function GET(request: NextRequest) {
     const result = await listProducts({ q, page, limit })
 
     // Validate each product in response (guardrail)
-    const validatedItems = result.items.map(item => {
+    const validatedItems = result.items.map((item) => {
       const validationResult = ProductResponseSchema.safeParse(item)
       if (!validationResult.success) {
         // Only log validation errors in non-test environments
@@ -48,7 +48,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({
       items: validatedItems,
       page: result.page,
-      total: result.total
+      total: result.total,
     })
   } catch (error) {
     // Only log errors in non-test environments to reduce test noise

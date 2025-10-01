@@ -10,7 +10,7 @@ const mockProduct = {
   title: 'Test Product',
   description: 'A test product description',
   images: ['https://example.com/image1.jpg'],
-  price: { amount: 100.00, currency: 'USD' as const },
+  price: { amount: 100.0, currency: 'USD' as const },
   paymentMethods: [{ label: 'Credit Card' }],
   seller: {
     id: 'seller-1',
@@ -27,7 +27,7 @@ const mockCreateProduct = {
   title: 'New Product',
   description: 'A new product description',
   images: ['https://example.com/new-image.jpg'],
-  price: { amount: 200.00, currency: 'USD' as const },
+  price: { amount: 200.0, currency: 'USD' as const },
   paymentMethods: [{ label: 'Credit Card' }],
   seller: {
     id: 'seller-1',
@@ -42,7 +42,7 @@ const mockCreateProduct = {
 
 const mockUpdateProduct = {
   title: 'Updated Product',
-  price: { amount: 300.00, currency: 'USD' as const },
+  price: { amount: 300.0, currency: 'USD' as const },
 }
 
 describe('ApiClient', () => {
@@ -114,7 +114,7 @@ describe('ApiClient', () => {
   describe('createProduct', () => {
     it('should create a product successfully', async () => {
       const createdProduct = { id: 'new-product-2', ...mockCreateProduct }
-      
+
       mockFetch.mockResolvedValueOnce({
         ok: true,
         json: () => Promise.resolve(createdProduct),
@@ -141,15 +141,16 @@ describe('ApiClient', () => {
         statusText: 'Bad Request',
       } as Response)
 
-      await expect(apiClient.createProduct(mockCreateProduct))
-        .rejects.toThrow('API Error: 400 Bad Request')
+      await expect(apiClient.createProduct(mockCreateProduct)).rejects.toThrow(
+        'API Error: 400 Bad Request'
+      )
     })
   })
 
   describe('updateProduct', () => {
     it('should update a product successfully', async () => {
       const updatedProduct = { ...mockProduct, ...mockUpdateProduct }
-      
+
       mockFetch.mockResolvedValueOnce({
         ok: true,
         json: () => Promise.resolve(updatedProduct),
@@ -176,8 +177,9 @@ describe('ApiClient', () => {
         statusText: 'Not Found',
       } as Response)
 
-      await expect(apiClient.updateProduct('nonexistent', mockUpdateProduct))
-        .rejects.toThrow('API Error: 404 Not Found')
+      await expect(apiClient.updateProduct('nonexistent', mockUpdateProduct)).rejects.toThrow(
+        'API Error: 404 Not Found'
+      )
     })
   })
 
@@ -207,8 +209,9 @@ describe('ApiClient', () => {
         statusText: 'Not Found',
       } as Response)
 
-      await expect(apiClient.deleteProduct('nonexistent'))
-        .rejects.toThrow('API Error: 404 Not Found')
+      await expect(apiClient.deleteProduct('nonexistent')).rejects.toThrow(
+        'API Error: 404 Not Found'
+      )
     })
   })
 })

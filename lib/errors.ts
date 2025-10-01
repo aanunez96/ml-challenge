@@ -49,14 +49,16 @@ export function createErrorResponse(
     {
       error: {
         code,
-        message
-      }
+        message,
+      },
     },
     { status: statusCode }
   )
 }
 
-export function notFoundResponse(message: string = 'Resource not found'): NextResponse<ApiErrorResponse> {
+export function notFoundResponse(
+  message: string = 'Resource not found'
+): NextResponse<ApiErrorResponse> {
   return createErrorResponse(404, 'NOT_FOUND', message)
 }
 
@@ -64,6 +66,8 @@ export function validationErrorResponse(message: string): NextResponse<ApiErrorR
   return createErrorResponse(400, 'VALIDATION_ERROR', message)
 }
 
-export function internalErrorResponse(message: string = 'Internal server error'): NextResponse<ApiErrorResponse> {
+export function internalErrorResponse(
+  message: string = 'Internal server error'
+): NextResponse<ApiErrorResponse> {
   return createErrorResponse(500, 'INTERNAL', message)
 }

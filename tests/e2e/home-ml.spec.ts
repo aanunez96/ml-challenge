@@ -7,7 +7,7 @@ const TEST_DATA = {
   TIMEOUTS: {
     DEFAULT: 5000,
     LOADING: 10000,
-  }
+  },
 } as const
 
 // Page Object Model - Home Page (ML-style)
@@ -21,7 +21,7 @@ class HomePage {
   async waitForLoad() {
     // Wait for product grid to load
     await this.page.waitForSelector('[data-testid="product-card"]', {
-      timeout: TEST_DATA.TIMEOUTS.LOADING
+      timeout: TEST_DATA.TIMEOUTS.LOADING,
     })
   }
 

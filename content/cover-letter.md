@@ -5,16 +5,19 @@ As a Senior Frontend Engineer with extensive experience in modern web technologi
 ## Why I'm a Strong Fit
 
 ### Technical Excellence & Modern Stack Expertise
+
 - **React & Next.js Mastery** - Deep experience with App Router, Server Components, and performance optimization patterns demonstrated in this PLP implementation
 - **TypeScript & Type Safety** - Strong advocate for type-driven development, evident in the comprehensive Zod validation and API contract design
 - **Testing & Quality** - Committed to maintainable code with comprehensive test coverage (≥80%) across unit, integration, and E2E testing suites
 
 ### Accessibility & User Experience Focus
+
 - **WCAG Compliance** - Proven experience implementing inclusive design patterns with semantic HTML, ARIA attributes, and keyboard navigation
 - **Performance Optimization** - Expertise in Core Web Vitals, lazy loading, and efficient rendering strategies for optimal user experience
 - **Mobile-First Development** - Strong responsive design skills ensuring seamless experiences across all device types
 
 ### Architecture & Scalability
+
 - **API Design** - Experience building robust, well-documented APIs with proper error handling and validation patterns
 - **Component Architecture** - Skilled in creating reusable, maintainable component libraries with clear separation of concerns
 - **Development Experience** - Focus on developer productivity through tooling, documentation, and clear architectural decisions

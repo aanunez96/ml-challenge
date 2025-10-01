@@ -87,10 +87,7 @@ export default function SellerCard({ seller }: SellerCardProps) {
 
   return (
     <div data-testid="seller-card">
-      <h3
-        className="text-lg font-medium mb-3"
-        style={{ color: 'var(--marketplace-text)' }}
-      >
+      <h3 className="text-lg font-medium mb-3" style={{ color: 'var(--marketplace-text)' }}>
         Información del vendedor
       </h3>
 
@@ -123,7 +120,11 @@ export default function SellerCard({ seller }: SellerCardProps) {
                   viewBox="0 0 20 20"
                   aria-hidden="true"
                 >
-                  <path fillRule="evenodd" d="M16.403 12.652a3 3 0 000-5.304 3 3 0 00-3.75-3.751 3 3 0 00-5.305 0 3 3 0 00-3.751 3.75 3 3 0 000 5.305 3 3 0 003.75 3.751 3 3 0 005.305 0 3 3 0 003.751-3.75zm-2.546-4.46a.75.75 0 00-1.214-.883l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
+                  <path
+                    fillRule="evenodd"
+                    d="M16.403 12.652a3 3 0 000-5.304 3 3 0 00-3.75-3.751 3 3 0 00-5.305 0 3 3 0 00-3.751 3.75 3 3 0 000 5.305 3 3 0 003.75 3.751 3 3 0 005.305 0 3 3 0 003.751-3.75zm-2.546-4.46a.75.75 0 00-1.214-.883l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                    clipRule="evenodd"
+                  />
                 </svg>
                 <span
                   className="text-sm font-medium"
@@ -137,24 +138,17 @@ export default function SellerCard({ seller }: SellerCardProps) {
           </div>
 
           <div className="flex items-center gap-1 mb-2">
-            <div className="flex items-center gap-1">
-              {renderStars(seller.rating)}
-            </div>
-            <span
-              className="text-sm ml-1"
-              style={{ color: 'var(--marketplace-muted)' }}
-            >
+            <div className="flex items-center gap-1">{renderStars(seller.rating)}</div>
+            <span className="text-sm ml-1" style={{ color: 'var(--marketplace-muted)' }}>
               {seller.rating.toFixed(1)}
             </span>
           </div>
 
-          <div
-            className="text-sm mb-2"
-            style={{ color: 'var(--marketplace-muted)' }}
-          >
+          <div className="text-sm mb-2" style={{ color: 'var(--marketplace-muted)' }}>
             <span className="font-medium" style={{ color: 'var(--marketplace-text)' }}>
               +{formatSales(seller.sales)}
-            </span> ventas
+            </span>{' '}
+            ventas
           </div>
 
           {seller.location && (
@@ -163,9 +157,25 @@ export default function SellerCard({ seller }: SellerCardProps) {
               style={{ color: 'var(--marketplace-muted)' }}
               data-testid="seller-location"
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1.5}
+                  d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1.5}
+                  d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
+                />
               </svg>
               <span>{seller.location}</span>
             </div>

@@ -13,18 +13,16 @@ const mockProduct = {
   id: 'premium-laptop-mx2024',
   title: 'MacBook Pro 16" M3 Max - Premium Edition',
   description: 'Experience ultimate performance with the latest MacBook Pro featuring M3 Max chip.',
-  images: [
-    'https://example.com/images/macbook-pro-16-m3-max-front.jpg'
-  ],
+  images: ['https://example.com/images/macbook-pro-16-m3-max-front.jpg'],
   price: {
     amount: 89999.99,
-    currency: 'MXN' as const
+    currency: 'MXN' as const,
   },
   paymentMethods: [
     {
       label: 'Tarjeta de Crédito',
-      note: '12 meses sin intereses disponibles'
-    }
+      note: '12 meses sin intereses disponibles',
+    },
   ],
   seller: {
     id: 'apple-store-mx',
@@ -32,19 +30,19 @@ const mockProduct = {
     rating: 4.8,
     sales: 15420,
     isOfficial: true,
-    location: 'Ciudad de México'
+    location: 'Ciudad de México',
   },
   stock: 15,
   rating: {
     average: 4.7,
-    count: 2847
-  }
+    count: 2847,
+  },
 }
 
 const mockProductList = {
   items: [mockProduct],
   page: 1,
-  total: 1
+  total: 1,
 }
 
 describe('API Route Handlers', () => {
@@ -58,20 +56,20 @@ describe('API Route Handlers', () => {
 
       const request = new NextRequest('http://localhost:3000/api/products')
       const response = await getProductsHandler(request)
-      
+
       expect(response.status).toBe(200)
-      
+
       const body = await response.json()
       expect(body).toEqual({
         items: mockProductList.items,
         page: mockProductList.page,
-        total: mockProductList.total
+        total: mockProductList.total,
       })
-      
+
       expect(mockedRepo.listProducts).toHaveBeenCalledWith({
         q: undefined,
         page: 1,
-        limit: 12
+        limit: 12,
       })
     })
 
@@ -80,21 +78,21 @@ describe('API Route Handlers', () => {
 
       const request = new NextRequest('http://localhost:3000/api/products?q=MacBook&page=2&limit=5')
       const response = await getProductsHandler(request)
-      
+
       expect(response.status).toBe(200)
       expect(mockedRepo.listProducts).toHaveBeenCalledWith({
         q: 'MacBook',
         page: 2,
-        limit: 5
+        limit: 5,
       })
     })
 
     it('should handle invalid page parameter', async () => {
       const request = new NextRequest('http://localhost:3000/api/products?page=invalid')
       const response = await getProductsHandler(request)
-      
+
       expect(response.status).toBe(400)
-      
+
       const body = await response.json()
       expect(body.error.code).toBe('VALIDATION_ERROR')
       expect(body.error.message).toContain('Invalid input')
@@ -103,9 +101,9 @@ describe('API Route Handlers', () => {
     it('should handle invalid limit parameter', async () => {
       const request = new NextRequest('http://localhost:3000/api/products?limit=invalid')
       const response = await getProductsHandler(request)
-      
+
       expect(response.status).toBe(400)
-      
+
       const body = await response.json()
       expect(body.error.code).toBe('VALIDATION_ERROR')
       expect(body.error.message).toContain('Invalid input')
@@ -116,9 +114,9 @@ describe('API Route Handlers', () => {
 
       const request = new NextRequest('http://localhost:3000/api/products')
       const response = await getProductsHandler(request)
-      
+
       expect(response.status).toBe(500)
-      
+
       const body = await response.json()
       expect(body.error.code).toBe('INTERNAL')
       expect(body.error.message).toBe('Failed to fetch products')
@@ -128,26 +126,26 @@ describe('API Route Handlers', () => {
       mockedRepo.listProducts.mockResolvedValue({
         items: [],
         page: 1,
-        total: 0
+        total: 0,
       })
 
       const request = new NextRequest('http://localhost:3000/api/products?q=')
       const response = await getProductsHandler(request)
-      
+
       expect(response.status).toBe(200)
       expect(mockedRepo.listProducts).toHaveBeenCalledWith({
         q: undefined, // Empty string becomes undefined
         page: 1,
-        limit: 12
+        limit: 12,
       })
     })
 
     it('should handle negative page numbers', async () => {
       const request = new NextRequest('http://localhost:3000/api/products?page=-1')
       const response = await getProductsHandler(request)
-      
+
       expect(response.status).toBe(400)
-      
+
       const body = await response.json()
       expect(body.error.code).toBe('VALIDATION_ERROR')
     })
@@ -157,21 +155,21 @@ describe('API Route Handlers', () => {
       mockedRepo.listProducts.mockResolvedValue({
         items: [],
         page: 999999,
-        total: 0
+        total: 0,
       })
 
       const request = new NextRequest('http://localhost:3000/api/products?page=999999')
       const response = await getProductsHandler(request)
-      
+
       expect(response.status).toBe(200) // Should succeed
     })
 
     it('should handle limit that is too small', async () => {
       const request = new NextRequest('http://localhost:3000/api/products?limit=0')
       const response = await getProductsHandler(request)
-      
+
       expect(response.status).toBe(400)
-      
+
       const body = await response.json()
       expect(body.error.code).toBe('VALIDATION_ERROR')
     })
@@ -179,9 +177,9 @@ describe('API Route Handlers', () => {
     it('should handle limit that is too large', async () => {
       const request = new NextRequest('http://localhost:3000/api/products?limit=200')
       const response = await getProductsHandler(request)
-      
+
       expect(response.status).toBe(400)
-      
+
       const body = await response.json()
       expect(body.error.code).toBe('VALIDATION_ERROR')
     })
@@ -195,12 +193,12 @@ describe('API Route Handlers', () => {
         new NextRequest('http://localhost:3000/api/products/premium-laptop-mx2024'),
         { params: Promise.resolve({ id: 'premium-laptop-mx2024' }) }
       )
-      
+
       expect(response.status).toBe(200)
-      
+
       const body = await response.json()
       expect(body).toEqual(mockProduct)
-      
+
       expect(mockedRepo.getProductById).toHaveBeenCalledWith('premium-laptop-mx2024')
     })
 
@@ -211,13 +209,13 @@ describe('API Route Handlers', () => {
         new NextRequest('http://localhost:3000/api/products/nonexistent-id'),
         { params: Promise.resolve({ id: 'nonexistent-id' }) }
       )
-      
+
       expect(response.status).toBe(404)
-      
+
       const body = await response.json()
       expect(body.error.code).toBe('NOT_FOUND')
       expect(body.error.message).toContain('nonexistent-id')
-      
+
       expect(mockedRepo.getProductById).toHaveBeenCalledWith('nonexistent-id')
     })
 
@@ -228,9 +226,9 @@ describe('API Route Handlers', () => {
         new NextRequest('http://localhost:3000/api/products/'),
         { params: Promise.resolve({ id: '' }) }
       )
-      
+
       expect(response.status).toBe(404)
-      
+
       const body = await response.json()
       expect(body.error.code).toBe('NOT_FOUND')
     })
@@ -243,7 +241,7 @@ describe('API Route Handlers', () => {
         new NextRequest(`http://localhost:3000/api/products/${encodeURIComponent(specialId)}`),
         { params: Promise.resolve({ id: specialId }) }
       )
-      
+
       expect(response.status).toBe(404)
       expect(mockedRepo.getProductById).toHaveBeenCalledWith(specialId)
     })
@@ -255,9 +253,9 @@ describe('API Route Handlers', () => {
         new NextRequest('http://localhost:3000/api/products/test-id'),
         { params: Promise.resolve({ id: 'test-id' }) }
       )
-      
+
       expect(response.status).toBe(500)
-      
+
       const body = await response.json()
       expect(body.error.code).toBe('INTERNAL')
       expect(body.error.message).toBe('Failed to fetch product')
@@ -271,7 +269,7 @@ describe('API Route Handlers', () => {
         new NextRequest(`http://localhost:3000/api/products/${longId}`),
         { params: Promise.resolve({ id: longId }) }
       )
-      
+
       expect(response.status).toBe(404)
       expect(mockedRepo.getProductById).toHaveBeenCalledWith(longId)
     })
@@ -284,7 +282,7 @@ describe('API Route Handlers', () => {
         new NextRequest(`http://localhost:3000/api/products/${encodeURIComponent(unicodeId)}`),
         { params: Promise.resolve({ id: unicodeId }) }
       )
-      
+
       expect(response.status).toBe(404)
       expect(mockedRepo.getProductById).toHaveBeenCalledWith(unicodeId)
     })
@@ -294,9 +292,9 @@ describe('API Route Handlers', () => {
         new NextRequest('http://localhost:3000/api/products/test-id'),
         {} as any // Missing params
       )
-      
+
       expect(response.status).toBe(500)
-      
+
       const body = await response.json()
       expect(body.error.code).toBe('INTERNAL')
     })
@@ -308,7 +306,7 @@ describe('API Route Handlers', () => {
         new NextRequest('http://localhost:3000/api/products/test-id'),
         { params: Promise.resolve({ id: undefined as any }) }
       )
-      
+
       expect(response.status).toBe(404) // getProductById handles undefined gracefully
     })
   })

@@ -9,7 +9,7 @@ describe('Product Repository Integration Tests', () => {
     // Get the actual data to base our tests on
     const result = await listProducts()
     actualProductCount = result.total
-    actualProductIds = result.items.map(p => p.id)
+    actualProductIds = result.items.map((p) => p.id)
   })
 
   describe('getProductById', () => {
@@ -17,7 +17,7 @@ describe('Product Repository Integration Tests', () => {
       // Use the first actual product ID
       const productId = actualProductIds[0]
       const product = await getProductById(productId)
-      
+
       expect(product).toBeDefined()
       expect(product?.id).toBe(productId)
       expect(product?.title).toBeTruthy()
@@ -28,7 +28,7 @@ describe('Product Repository Integration Tests', () => {
 
     it('should return null when product not found', async () => {
       const product = await getProductById('nonexistent-product-id')
-      
+
       expect(product).toBeNull()
     })
   })
@@ -36,7 +36,7 @@ describe('Product Repository Integration Tests', () => {
   describe('listProducts', () => {
     it('should return all products with default pagination', async () => {
       const result = await listProducts()
-      
+
       expect(result.items).toHaveLength(actualProductCount)
       expect(result.page).toBe(1)
       expect(result.total).toBe(actualProductCount)
@@ -48,7 +48,7 @@ describe('Product Repository Integration Tests', () => {
     it('should apply search filter by title', async () => {
       // Use a search term that should match at least one product
       const result = await listProducts({ q: 'MacBook' })
-      
+
       expect(result.items.length).toBeGreaterThanOrEqual(0)
       if (result.items.length > 0) {
         expect(result.items[0].title.toLowerCase()).toContain('macbook')
@@ -58,12 +58,13 @@ describe('Product Repository Integration Tests', () => {
 
     it('should apply search filter by description', async () => {
       const result = await listProducts({ q: 'performance' })
-      
+
       expect(result.total).toBe(result.items.length)
       if (result.items.length > 0) {
-        const hasMatch = result.items.some(item => 
-          item.title.toLowerCase().includes('performance') ||
-          item.description.toLowerCase().includes('performance')
+        const hasMatch = result.items.some(
+          (item) =>
+            item.title.toLowerCase().includes('performance') ||
+            item.description.toLowerCase().includes('performance')
         )
         expect(hasMatch).toBe(true)
       }
@@ -72,13 +73,13 @@ describe('Product Repository Integration Tests', () => {
     it('should handle case-insensitive search', async () => {
       const lowerResult = await listProducts({ q: 'macbook' })
       const upperResult = await listProducts({ q: 'MACBOOK' })
-      
+
       expect(lowerResult.total).toBe(upperResult.total)
     })
 
     it('should return empty results for non-matching search', async () => {
       const result = await listProducts({ q: 'xyznonsenseproduct123' })
-      
+
       expect(result.items).toHaveLength(0)
       expect(result.total).toBe(0)
     })
@@ -90,7 +91,7 @@ describe('Product Repository Integration Tests', () => {
       }
 
       const result = await listProducts({ page: 2, limit: 2 })
-      
+
       expect(result.page).toBe(2)
       expect(result.total).toBe(actualProductCount)
       // Should have remaining products (total - 2) or 2, whichever is smaller
@@ -100,7 +101,7 @@ describe('Product Repository Integration Tests', () => {
 
     it('should clamp page to minimum of 1', async () => {
       const result = await listProducts({ page: 0 })
-      
+
       expect(result.page).toBe(1)
     })
 
@@ -109,7 +110,7 @@ describe('Product Repository Integration Tests', () => {
       const result1 = await listProducts({ limit: 0 })
       expect(result1.items.length).toBeGreaterThanOrEqual(0)
       expect(result1.items.length).toBeLessThanOrEqual(1)
-      
+
       // Test maximum limit (should be clamped to 100)
       const result2 = await listProducts({ limit: 150 })
       expect(result2.items).toHaveLength(actualProductCount) // We have fewer than 100 products
@@ -118,10 +119,10 @@ describe('Product Repository Integration Tests', () => {
     it('should combine search and pagination', async () => {
       // Search for a common term that should match multiple products
       const searchResult = await listProducts({ q: 'a' }) // Single letter should match many
-      
+
       if (searchResult.total > 2) {
         const paginatedResult = await listProducts({ q: 'a', page: 1, limit: 2 })
-        
+
         expect(paginatedResult.items).toHaveLength(2)
         expect(paginatedResult.total).toBe(searchResult.total)
         expect(paginatedResult.page).toBe(1)

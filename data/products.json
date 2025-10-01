@@ -78,7 +78,7 @@
       "https://picsum.photos/seed/gaming-chair-deluxe-back/1600/1200"
     ],
     "price": {
-      "amount": 12499.00,
+      "amount": 12499.0,
       "currency": "MXN"
     },
     "paymentMethods": [
@@ -132,7 +132,7 @@
       "https://picsum.photos/seed/budget-smartphone-x1-back/1600/1200"
     ],
     "price": {
-      "amount": 3299.50,
+      "amount": 3299.5,
       "currency": "MXN"
     },
     "paymentMethods": [

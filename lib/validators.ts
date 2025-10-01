@@ -5,7 +5,10 @@ const idSchema = z
   .string()
   .min(6, 'ID must be at least 6 characters')
   .max(40, 'ID must not exceed 40 characters')
-  .regex(/^[a-z0-9_-]+$/, 'ID must contain only lowercase letters, numbers, underscores, and hyphens')
+  .regex(
+    /^[a-z0-9_-]+$/,
+    'ID must contain only lowercase letters, numbers, underscores, and hyphens'
+  )
 
 // Price validation with 2 decimal places
 const priceSchema = z.object({
@@ -48,7 +51,10 @@ const sellerSchema = z.object({
 // Product features validation
 const featureSchema = z.object({
   icon: z.string().min(1, 'Feature icon is required'),
-  label: z.string().min(1, 'Feature label is required').max(100, 'Feature label must not exceed 100 characters'),
+  label: z
+    .string()
+    .min(1, 'Feature label is required')
+    .max(100, 'Feature label must not exceed 100 characters'),
   highlight: z.boolean().optional(),
 })
 
@@ -63,29 +69,26 @@ const flagsSchema = z
 // Main Product Response schema
 export const ProductResponseSchema = z.object({
   id: idSchema,
-  title: z
-    .string()
-    .min(1, 'Title is required')
-    .max(160, 'Title must not exceed 160 characters'),
+  title: z.string().min(1, 'Title is required').max(160, 'Title must not exceed 160 characters'),
   description: z
     .string()
     .min(1, 'Description is required')
     .max(5000, 'Description must not exceed 5000 characters'),
   images: z
-    .array(z.string().url('Image must be a valid HTTPS URL').startsWith('https://', 'Image URL must use HTTPS'))
+    .array(
+      z
+        .string()
+        .url('Image must be a valid HTTPS URL')
+        .startsWith('https://', 'Image URL must use HTTPS')
+    )
     .min(1, 'At least one image is required')
     .max(10, 'Maximum 10 images allowed'),
   price: priceSchema,
-  paymentMethods: z
-    .array(paymentMethodSchema)
-    .min(1, 'At least one payment method is required'),
+  paymentMethods: z.array(paymentMethodSchema).min(1, 'At least one payment method is required'),
   seller: sellerSchema,
   stock: z.number().int().min(0, 'Stock must be a non-negative integer'),
   rating: ratingSchema,
-  features: z
-    .array(featureSchema)
-    .max(10, 'Maximum 10 features allowed')
-    .optional(),
+  features: z.array(featureSchema).max(10, 'Maximum 10 features allowed').optional(),
   flags: flagsSchema,
 })
 
@@ -112,13 +115,13 @@ export type UpdateProduct = z.infer<typeof UpdateProductSchema>
 export const ProductListQuerySchema = z.object({
   q: z.string().optional(),
   page: z.coerce.number().int().min(1).optional().default(1),
-  limit: z.coerce.number().int().min(1).max(100).optional().default(10)
+  limit: z.coerce.number().int().min(1).max(100).optional().default(10),
 })
 
 export const ProductListResponseSchema = z.object({
   items: z.array(ProductResponseSchema),
   page: z.number().int().min(1),
-  total: z.number().int().min(0)
+  total: z.number().int().min(0),
 })
 
 export type ProductListQuery = z.infer<typeof ProductListQuerySchema>

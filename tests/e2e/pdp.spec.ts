@@ -11,8 +11,8 @@ const TEST_DATA = {
   TIMEOUTS: {
     DEFAULT: 5000,
     LOADING: 10000,
-    NAVIGATION: 30000
-  }
+    NAVIGATION: 30000,
+  },
 } as const
 
 // Page Object Model - PDP Page
@@ -23,7 +23,7 @@ class ProductDetailPage {
   async goto(productId: string) {
     await this.page.goto(`/product/${productId}`, {
       waitUntil: 'networkidle',
-      timeout: TEST_DATA.TIMEOUTS.NAVIGATION
+      timeout: TEST_DATA.TIMEOUTS.NAVIGATION,
     })
   }
 
@@ -339,18 +339,18 @@ test.describe('Product Detail Page (PDP)', () => {
     test('should handle API errors gracefully', async ({ page }) => {
       // Set up console error tracking
       const consoleErrors: string[] = []
-      page.on('console', msg => {
+      page.on('console', (msg) => {
         if (msg.type() === 'error') {
           consoleErrors.push(msg.text())
         }
       })
 
       // Mock API error before navigating
-      await page.route('**/api/products/premium-laptop-mx2024', route => {
+      await page.route('**/api/products/premium-laptop-mx2024', (route) => {
         route.fulfill({
           status: 500,
           contentType: 'application/json',
-          body: JSON.stringify({ error: 'Internal server error' })
+          body: JSON.stringify({ error: 'Internal server error' }),
         })
       })
 
@@ -384,7 +384,10 @@ test.describe('Product Detail Page (PDP)', () => {
         } else {
           // Ensure the app didn't completely crash
           // Check for basic page structure
-          const bodyExists = await page.locator('body').isVisible().catch(() => false)
+          const bodyExists = await page
+            .locator('body')
+            .isVisible()
+            .catch(() => false)
           expect(bodyExists).toBeTruthy()
 
           // Check that page has some content (not blank)
@@ -392,10 +395,11 @@ test.describe('Product Detail Page (PDP)', () => {
           expect(title.length).toBeGreaterThan(0)
 
           // Verify no critical JavaScript errors occurred
-          const criticalErrors = consoleErrors.filter(error =>
-            error.includes('Uncaught') ||
-            error.includes('ReferenceError') ||
-            error.includes('TypeError')
+          const criticalErrors = consoleErrors.filter(
+            (error) =>
+              error.includes('Uncaught') ||
+              error.includes('ReferenceError') ||
+              error.includes('TypeError')
           )
           expect(criticalErrors).toHaveLength(0)
         }
@@ -424,7 +428,7 @@ test.describe('Product Detail Page (PDP)', () => {
 
       // Check ARIA labels on gallery buttons
       const galleryButtons = pdpPage.galleryThumbnails
-      if (await galleryButtons.count() > 0) {
+      if ((await galleryButtons.count()) > 0) {
         await expect(galleryButtons.first()).toHaveAttribute('aria-label', /.+/)
       }
     })

@@ -14,13 +14,9 @@ export default function ProductDescription({ description }: ProductDescriptionPr
   const shouldShowToggle = isLongContent
 
   // Create truncated version
-  const truncatedDescription = isLongContent
-    ? description.slice(0, 300) + '...'
-    : description
+  const truncatedDescription = isLongContent ? description.slice(0, 300) + '...' : description
 
-  const displayDescription = isExpanded || !isLongContent
-    ? description
-    : truncatedDescription
+  const displayDescription = isExpanded || !isLongContent ? description : truncatedDescription
 
   const handleToggle = () => {
     setIsExpanded(!isExpanded)
@@ -39,10 +35,7 @@ export default function ProductDescription({ description }: ProductDescriptionPr
       style={{ borderTop: '1px solid var(--marketplace-border)' }}
       data-testid="product-description"
     >
-      <h2
-        className="text-lg font-medium mb-4"
-        style={{ color: 'var(--marketplace-text)' }}
-      >
+      <h2 className="text-lg font-medium mb-4" style={{ color: 'var(--marketplace-text)' }}>
         Descripción
       </h2>
 
@@ -53,7 +46,7 @@ export default function ProductDescription({ description }: ProductDescriptionPr
           }`}
           style={{
             color: 'var(--marketplace-text)',
-            lineClamp: isExpanded ? 'none' : '8'
+            lineClamp: isExpanded ? 'none' : '8',
           }}
           aria-expanded={isExpanded}
           data-testid="description-content"
@@ -70,7 +63,7 @@ export default function ProductDescription({ description }: ProductDescriptionPr
               style={{ color: 'var(--marketplace-accent)' }}
               aria-expanded={isExpanded}
               aria-controls="product-description-content"
-              data-testid={isExpanded ? "show-less-button" : "show-more-button"}
+              data-testid={isExpanded ? 'show-less-button' : 'show-more-button'}
             >
               {isExpanded ? (
                 <>
@@ -115,12 +108,10 @@ export default function ProductDescription({ description }: ProductDescriptionPr
       </div>
 
       {/* Screen reader announcement for content changes */}
-      <div
-        className="sr-only"
-        aria-live="polite"
-        id="product-description-content"
-      >
-        {isExpanded ? 'La descripción completa ahora está visible' : 'La descripción está colapsada'}
+      <div className="sr-only" aria-live="polite" id="product-description-content">
+        {isExpanded
+          ? 'La descripción completa ahora está visible'
+          : 'La descripción está colapsada'}
       </div>
     </section>
   )

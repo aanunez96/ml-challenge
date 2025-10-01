@@ -7,11 +7,11 @@ describe('Product Data Contracts', () => {
     it('should validate all sample products successfully', () => {
       productsData.forEach((product: any, index: number) => {
         const result = ProductResponseSchema.safeParse(product)
-        
+
         if (!result.success) {
           console.error(`Product ${index} validation failed:`, result.error.issues)
         }
-        
+
         expect(result.success).toBe(true)
         expect(result.data).toBeDefined()
       })
@@ -25,26 +25,26 @@ describe('Product Data Contracts', () => {
         images: ['https://example.com/image1.jpg'],
         price: {
           amount: 99.99,
-          currency: 'USD' as const
+          currency: 'USD' as const,
         },
         paymentMethods: [
           {
             label: 'Credit Card',
-            note: 'Visa and Mastercard accepted'
-          }
+            note: 'Visa and Mastercard accepted',
+          },
         ],
         seller: {
           id: 'test-seller-456',
           name: 'Test Seller',
           rating: 4.5,
           sales: 1000,
-          isOfficial: false
+          isOfficial: false,
         },
         stock: 50,
         rating: {
           average: 4.2,
-          count: 150
-        }
+          count: 150,
+        },
       }
 
       const result = ProductResponseSchema.safeParse(validProduct)
@@ -59,20 +59,20 @@ describe('Product Data Contracts', () => {
         images: [
           'https://example.com/img1.jpg',
           'https://example.com/img2.jpg',
-          'https://example.com/img3.jpg'
+          'https://example.com/img3.jpg',
         ],
         price: {
-          amount: 1299.50,
-          currency: 'MXN' as const
+          amount: 1299.5,
+          currency: 'MXN' as const,
         },
         paymentMethods: [
           {
             label: 'Credit Card',
-            note: 'All major cards accepted'
+            note: 'All major cards accepted',
           },
           {
-            label: 'PayPal'
-          }
+            label: 'PayPal',
+          },
         ],
         seller: {
           id: 'premium-seller-789',
@@ -80,17 +80,17 @@ describe('Product Data Contracts', () => {
           rating: 4.9,
           sales: 25000,
           isOfficial: true,
-          location: 'Mexico City, CDMX'
+          location: 'Mexico City, CDMX',
         },
         stock: 25,
         rating: {
           average: 4.7,
-          count: 892
+          count: 892,
         },
         flags: {
           full: true,
-          freeShipping: true
-        }
+          freeShipping: true,
+        },
       }
 
       const result = ProductResponseSchema.safeParse(fullProduct)
@@ -114,16 +114,18 @@ describe('Product Data Contracts', () => {
           name: 'Test Seller',
           rating: 4.0,
           sales: 100,
-          isOfficial: false
+          isOfficial: false,
         },
         stock: 10,
-        rating: { average: 4.0, count: 50 }
+        rating: { average: 4.0, count: 50 },
       }
 
       const result = ProductResponseSchema.safeParse(invalidProduct)
       expect(result.success).toBe(false)
       if (!result.success) {
-        expect(result.error.issues[0].message).toContain('lowercase letters, numbers, underscores, and hyphens')
+        expect(result.error.issues[0].message).toContain(
+          'lowercase letters, numbers, underscores, and hyphens'
+        )
       }
     })
 
@@ -135,7 +137,7 @@ describe('Product Data Contracts', () => {
         images: ['https://example.com/image.jpg'],
         price: {
           amount: 99.999, // Too many decimal places
-          currency: 'USD' as const
+          currency: 'USD' as const,
         },
         paymentMethods: [{ label: 'Credit Card' }],
         seller: {
@@ -143,10 +145,10 @@ describe('Product Data Contracts', () => {
           name: 'Test Seller',
           rating: 4.0,
           sales: 100,
-          isOfficial: false
+          isOfficial: false,
         },
         stock: 10,
-        rating: { average: 4.0, count: 50 }
+        rating: { average: 4.0, count: 50 },
       }
 
       const result = ProductResponseSchema.safeParse(invalidProduct)
@@ -169,13 +171,13 @@ describe('Product Data Contracts', () => {
           name: 'Test Seller',
           rating: 4.0,
           sales: 100,
-          isOfficial: false
+          isOfficial: false,
         },
         stock: 10,
         rating: {
           average: 6.5, // Exceeds maximum of 5.0
-          count: 50
-        }
+          count: 50,
+        },
       }
 
       const result = ProductResponseSchema.safeParse(invalidProduct)
@@ -198,10 +200,10 @@ describe('Product Data Contracts', () => {
           name: 'Test Seller',
           rating: 4.0,
           sales: 100,
-          isOfficial: false
+          isOfficial: false,
         },
         stock: 10,
-        rating: { average: 4.0, count: 50 }
+        rating: { average: 4.0, count: 50 },
       }
 
       const result = ProductResponseSchema.safeParse(invalidProduct)
@@ -219,7 +221,7 @@ describe('Product Data Contracts', () => {
         images: ['https://example.com/image.jpg'],
         price: {
           amount: 99.99,
-          currency: 'EUR' as any // Not in allowed enum
+          currency: 'EUR' as any, // Not in allowed enum
         },
         paymentMethods: [{ label: 'Credit Card' }],
         seller: {
@@ -227,10 +229,10 @@ describe('Product Data Contracts', () => {
           name: 'Test Seller',
           rating: 4.0,
           sales: 100,
-          isOfficial: false
+          isOfficial: false,
         },
         stock: 10,
-        rating: { average: 4.0, count: 50 }
+        rating: { average: 4.0, count: 50 },
       }
 
       const result = ProductResponseSchema.safeParse(invalidProduct)
@@ -250,10 +252,10 @@ describe('Product Data Contracts', () => {
           name: 'Test Seller',
           rating: 4.0,
           sales: 100,
-          isOfficial: false
+          isOfficial: false,
         },
         stock: 10,
-        rating: { average: 4.0, count: 50 }
+        rating: { average: 4.0, count: 50 },
       }
 
       const result = ProductResponseSchema.safeParse(invalidProduct)
@@ -268,7 +270,7 @@ describe('Product Data Contracts', () => {
     it('should validate out-of-stock product (stock = 0)', () => {
       const outOfStockProduct = productsData.find((p: any) => p.stock === 0)
       expect(outOfStockProduct).toBeDefined()
-      
+
       const result = ProductResponseSchema.safeParse(outOfStockProduct)
       expect(result.success).toBe(true)
       expect(result.data?.stock).toBe(0)
@@ -277,7 +279,7 @@ describe('Product Data Contracts', () => {
     it('should validate low-rated product', () => {
       const lowRatedProduct = productsData.find((p: any) => p.rating.average < 3.0)
       expect(lowRatedProduct).toBeDefined()
-      
+
       const result = ProductResponseSchema.safeParse(lowRatedProduct)
       expect(result.success).toBe(true)
       expect(result.data?.rating.average).toBeLessThan(3.0)
@@ -286,27 +288,29 @@ describe('Product Data Contracts', () => {
     it('should validate products with different currency types', () => {
       const mxnProduct = productsData.find((p: any) => p.price.currency === 'MXN')
       const usdProduct = productsData.find((p: any) => p.price.currency === 'USD')
-      
+
       expect(mxnProduct).toBeDefined()
       expect(usdProduct).toBeDefined()
-      
+
       const mxnResult = ProductResponseSchema.safeParse(mxnProduct)
       const usdResult = ProductResponseSchema.safeParse(usdProduct)
-      
+
       expect(mxnResult.success).toBe(true)
       expect(usdResult.success).toBe(true)
     })
 
     it('should validate products with different flag combinations', () => {
       const fullWithShipping = productsData.find((p: any) => p.flags?.full && p.flags?.freeShipping)
-      const fullWithoutShipping = productsData.find((p: any) => p.flags?.full && !p.flags?.freeShipping)
-      
+      const fullWithoutShipping = productsData.find(
+        (p: any) => p.flags?.full && !p.flags?.freeShipping
+      )
+
       expect(fullWithShipping).toBeDefined()
       expect(fullWithoutShipping).toBeDefined()
-      
+
       const result1 = ProductResponseSchema.safeParse(fullWithShipping)
       const result2 = ProductResponseSchema.safeParse(fullWithoutShipping)
-      
+
       expect(result1.success).toBe(true)
       expect(result2.success).toBe(true)
     })

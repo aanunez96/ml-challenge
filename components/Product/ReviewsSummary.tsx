@@ -115,7 +115,8 @@ export default function ReviewsSummary({ rating }: ReviewsSummaryProps) {
 
       {/* Screen reader friendly description */}
       <span className="sr-only">
-        Average rating: {average} out of 5 stars, based on {count} customer reviews. Rating quality: {getRatingText(average)}.
+        Average rating: {average} out of 5 stars, based on {count} customer reviews. Rating quality:{' '}
+        {getRatingText(average)}.
       </span>
     </div>
   )

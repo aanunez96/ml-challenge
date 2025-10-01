@@ -28,7 +28,7 @@ async function loadProducts(): Promise<ProductResponse[]> {
     // Update cache
     cache = {
       products,
-      mtime: currentMtime
+      mtime: currentMtime,
     }
 
     return products
@@ -45,7 +45,7 @@ export class ProductRepository {
 
   async findById(id: string): Promise<ProductResponse | null> {
     const products = await loadProducts()
-    return products.find(p => p.id === id) || null
+    return products.find((p) => p.id === id) || null
   }
 
   async create(data: any): Promise<ProductResponse> {
@@ -64,7 +64,7 @@ export class ProductRepository {
 // Main repository functions
 export async function getProductById(id: string): Promise<ProductResponse | null> {
   const products = await loadProducts()
-  return products.find(p => p.id === id) || null
+  return products.find((p) => p.id === id) || null
 }
 
 export interface ListProductsOptions {
@@ -81,19 +81,20 @@ export interface ListProductsResult {
 
 export async function listProducts(opts: ListProductsOptions = {}): Promise<ListProductsResult> {
   const { q, page = 1, limit = 12 } = opts
-  
+
   // Validate and clamp parameters
   const validPage = Math.max(1, page)
   const validLimit = Math.max(1, Math.min(100, limit))
-  
+
   let products = await loadProducts()
 
   // Apply search filter if provided
   if (q && q.trim()) {
     const searchTerm = q.toLowerCase().trim()
-    products = products.filter(product => 
-      product.title.toLowerCase().includes(searchTerm) ||
-      product.description.toLowerCase().includes(searchTerm)
+    products = products.filter(
+      (product) =>
+        product.title.toLowerCase().includes(searchTerm) ||
+        product.description.toLowerCase().includes(searchTerm)
     )
   }
 
@@ -104,7 +105,7 @@ export async function listProducts(opts: ListProductsOptions = {}): Promise<List
   return {
     items,
     page: validPage,
-    total
+    total,
   }
 }
 

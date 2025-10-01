@@ -6,7 +6,7 @@ describe('Product API [id] - Additional Coverage', () => {
     const { PUT } = await import('@/app/api/products/[id]/route')
 
     const request = new NextRequest('http://localhost:3000/api/products/test-id', {
-      method: 'PUT'
+      method: 'PUT',
     })
 
     const response = await PUT(request, { params: Promise.resolve({ id: 'test-id' }) })
@@ -22,7 +22,7 @@ describe('Product API [id] - Additional Coverage', () => {
     const { DELETE } = await import('@/app/api/products/[id]/route')
 
     const request = new NextRequest('http://localhost:3000/api/products/test-id', {
-      method: 'DELETE'
+      method: 'DELETE',
     })
 
     const response = await DELETE(request, { params: Promise.resolve({ id: 'test-id' }) })

@@ -26,37 +26,37 @@ export default function BuyBox({ product, disabled = false }: BuyBoxProps) {
   }
 
   const renderFeatureIcon = (iconType: string) => {
-    const iconProps = { className: "w-4 h-4 fill-current", viewBox: "0 0 24 24" }
+    const iconProps = { className: 'w-4 h-4 fill-current', viewBox: '0 0 24 24' }
 
     switch (iconType) {
       case 'truck':
         return (
           <svg {...iconProps} className="w-4 h-4 fill-current text-ml-success">
-            <path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
+            <path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z" />
           </svg>
         )
       case 'shield-check':
         return (
           <svg {...iconProps} className="w-4 h-4 fill-current text-ml-success">
-            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
         )
       case 'return':
         return (
           <svg {...iconProps} className="w-4 h-4 fill-current text-ml-muted">
-            <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm-1 16H9V7h9v14z"/>
+            <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm-1 16H9V7h9v14z" />
           </svg>
         )
       case 'star':
         return (
           <svg {...iconProps} className="w-4 h-4 fill-current text-ml-accent">
-            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
           </svg>
         )
       default:
         return (
           <svg {...iconProps} className="w-4 h-4 fill-current text-ml-muted">
-            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
         )
     }
@@ -80,10 +80,7 @@ export default function BuyBox({ product, disabled = false }: BuyBoxProps) {
   return (
     <div className="space-y-4">
       {/* Main Buy Box */}
-      <div
-        className="bg-ml-bg border border-ml-border rounded p-4 space-y-4"
-        data-testid="buybox"
-      >
+      <div className="bg-ml-bg border border-ml-border rounded p-4 space-y-4" data-testid="buybox">
         {/* Color and options */}
         <div className="space-y-3">
           <div>
@@ -124,7 +121,12 @@ export default function BuyBox({ product, disabled = false }: BuyBoxProps) {
             data-testid="wishlist-button"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+              />
             </svg>
             Agregar a favoritos
           </button>
@@ -144,9 +146,7 @@ export default function BuyBox({ product, disabled = false }: BuyBoxProps) {
             {product.features.map((feature, index) => (
               <div key={index} className="flex items-center gap-2">
                 {renderFeatureIcon(feature.icon)}
-                <span className={`text-sm ${getFeatureColor(feature)}`}>
-                  {feature.label}
-                </span>
+                <span className={`text-sm ${getFeatureColor(feature)}`}>{feature.label}</span>
               </div>
             ))}
           </div>

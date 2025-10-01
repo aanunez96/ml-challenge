@@ -90,9 +90,7 @@ export default function Gallery({ images, productTitle }: GalleryProps) {
                 onClick={() => handleThumbnailClick(index)}
                 onKeyDown={(e) => handleKeyDown(e, index)}
                 className={`w-16 h-16 overflow-hidden transition-all duration-200 focus-ring border rounded bg-ml-bg ${
-                  index === selectedIndex
-                    ? 'border-ml-accent border-2'
-                    : 'border-ml-border border'
+                  index === selectedIndex ? 'border-ml-accent border-2' : 'border-ml-border border'
                 }`}
                 aria-label={`View image ${index + 1} of ${displayImages.length}`}
                 aria-pressed={index === selectedIndex}
@@ -133,13 +131,15 @@ export default function Gallery({ images, productTitle }: GalleryProps) {
               alt={`${productTitle} - Image ${selectedIndex + 1}`}
               fill
               className={`object-contain p-4 transition-transform duration-200 ${
-                isZoomed
-                  ? 'scale-150 cursor-zoom-out'
-                  : 'group-hover:scale-[1.02] cursor-zoom-in'
+                isZoomed ? 'scale-150 cursor-zoom-out' : 'group-hover:scale-[1.02] cursor-zoom-in'
               }`}
-              style={isZoomed ? {
-                transformOrigin: `${zoomPosition.x}% ${zoomPosition.y}%`
-              } : {}}
+              style={
+                isZoomed
+                  ? {
+                      transformOrigin: `${zoomPosition.x}% ${zoomPosition.y}%`,
+                    }
+                  : {}
+              }
               priority={selectedIndex === 0}
               sizes="(min-width: 1024px) 50vw, 100vw"
               onLoad={() => setIsLoading(false)}
@@ -148,8 +148,18 @@ export default function Gallery({ images, productTitle }: GalleryProps) {
             />
             {isLoading && (
               <div className="absolute inset-0 animate-pulse flex items-center justify-center bg-gray-100">
-                <svg className="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                <svg
+                  className="w-12 h-12 text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
+                  />
                 </svg>
               </div>
             )}
@@ -159,7 +169,12 @@ export default function Gallery({ images, productTitle }: GalleryProps) {
               <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                 <div className="bg-black/70 text-white px-2 py-1 rounded text-sm flex items-center gap-1">
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+                    />
                   </svg>
                   Zoom
                 </div>
@@ -179,8 +194,18 @@ export default function Gallery({ images, productTitle }: GalleryProps) {
                 className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white shadow-md transition-all duration-200 focus-ring disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center"
                 aria-label="Previous image"
               >
-                <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                <svg
+                  className="w-4 h-4 text-gray-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 19l-7-7 7-7"
+                  />
                 </svg>
               </button>
               <button
@@ -192,8 +217,18 @@ export default function Gallery({ images, productTitle }: GalleryProps) {
                 className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white shadow-md transition-all duration-200 focus-ring disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center"
                 aria-label="Next image"
               >
-                <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                <svg
+                  className="w-4 h-4 text-gray-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
                 </svg>
               </button>
             </>
@@ -202,11 +237,7 @@ export default function Gallery({ images, productTitle }: GalleryProps) {
       </div>
 
       {/* Screen reader announcement for image changes */}
-      <div
-        className="sr-only"
-        aria-live="polite"
-        aria-atomic="true"
-      >
+      <div className="sr-only" aria-live="polite" aria-atomic="true">
         {`Image ${selectedIndex + 1} of ${displayImages.length}: ${productTitle}${isZoomed ? ' (zoomed)' : ''}`}
       </div>
     </div>

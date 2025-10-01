@@ -3,9 +3,7 @@
     "id": "test-product-1",
     "title": "Test Product One",
     "description": "First test product for unit testing",
-    "images": [
-      "https://example.com/image1.jpg"
-    ],
+    "images": ["https://example.com/image1.jpg"],
     "price": {
       "amount": 99.99,
       "currency": "USD"
@@ -36,9 +34,7 @@
     "id": "test-product-2",
     "title": "Another Test Product",
     "description": "Second product with different characteristics",
-    "images": [
-      "https://example.com/image2.jpg"
-    ],
+    "images": ["https://example.com/image2.jpg"],
     "price": {
       "amount": 149.5,
       "currency": "USD"
@@ -69,9 +65,7 @@
     "id": "search-test-product",
     "title": "Special Search Item",
     "description": "This product should appear in search results for special queries",
-    "images": [
-      "https://example.com/image3.jpg"
-    ],
+    "images": ["https://example.com/image3.jpg"],
     "price": {
       "amount": 75.25,
       "currency": "USD"

@@ -1,37 +1,38 @@
-# Runbook - ML Challenge Project
+# Setup & Development Guide
 
-This runbook provides step-by-step instructions for running and testing the project locally.
+Step-by-step instructions for local development and testing.
 
-## Prerequisites Checklist
+## Prerequisites
 
-- [ ] Node.js 18 or higher installed
-- [ ] pnpm or npm package manager available
-- [ ] Git repository cloned
-- [ ] Terminal/Command prompt access
+- **Node.js**: 18 or higher
+- **Package Manager**: pnpm (recommended) or npm
+- **Environment**: Terminal/command prompt access
 
-## Local Development Flow
+## Quick Setup
 
-### Step 1: Initial Setup (~2-3 minutes)
+### 1. Initial Installation (2-3 minutes)
 
 ```bash
-# Navigate to project directory
+# Clone and navigate
+git clone <repository>
 cd ml-challenge
 
 # Install dependencies
 pnpm install
-# OR: npm install
+
+# Environment setup
+cp .env.example .env.local
 
 # Verify installation
-node --version  # Should show 18+
-pnpm --version  # Should show package manager version
+node --version  # Should be 18+
+pnpm --version
 ```
 
-### Step 2: Start Development Server (~30 seconds)
+### 2. Start Development Server (30 seconds)
 
 ```bash
-# Start the Next.js development server
+# Start Next.js development server
 pnpm dev
-# OR: npm run dev
 
 # Expected output:
 # ▲ Next.js 15.5.4
@@ -39,206 +40,170 @@ pnpm dev
 # - ready in 2.3s
 ```
 
-**Verification:**
-- [ ] Server starts without errors
-- [ ] Browser opens to `http://localhost:3000`
-- [ ] Home page loads with product listings
+**✅ Verification:**
 
-### Step 3: API Smoke Test (~1 minute)
+- Server starts without errors
+- Visit `http://localhost:3000`
+- Homepage loads with ML-style layout and product cards
+- Navigate to product detail: `http://localhost:3000/product/premium-laptop-mx2024`
+
+### 3. API Verification (1 minute)
 
 ```bash
-# Test API endpoint (in new terminal)
+# Test API endpoint
 curl http://localhost:3000/api/products/premium-laptop-mx2024
 
-# Expected: JSON response with product details
-# Status: 200 OK
+# Expected: JSON response with product details (200 OK)
 ```
 
-**Manual verification:**
-- [ ] Visit `http://localhost:3000/api/products/premium-laptop-mx2024`
-- [ ] JSON response displays in browser
-- [ ] Product data includes title, price, seller, stock
+## Testing Workflow
 
-### Step 4: Navigate Product Detail Page (~30 seconds)
-
-**Manual verification:**
-- [ ] Visit `http://localhost:3000/product/premium-laptop-mx2024`
-- [ ] Page loads with product title and image
-- [ ] Price displays in correct format
-- [ ] Seller information visible
-- [ ] Payment methods list appears
-- [ ] Stock status shows
-- [ ] Rating displays with count
-
-## Testing Sequence
-
-### Step 1: Unit Tests (~15-30 seconds)
+### Unit Tests (15-30 seconds)
 
 ```bash
-# Run unit tests in watch mode
+# Run all unit tests
 pnpm test
 
 # Expected output:
 # ✓ tests/unit/validators.test.ts (13 tests)
 # ✓ tests/unit/api-routes.test.ts (20 tests)
 # ✓ tests/unit/api-client.test.ts (10 tests)
-# ...
-# Test Files: 11 passed (11)
 # Tests: 105 passed (105)
 ```
 
-**Verification:**
-- [ ] All test files pass
-- [ ] No failing tests
-- [ ] No syntax errors
-
-### Step 2: Coverage Report (~45-60 seconds)
+### Coverage Report (45-60 seconds)
 
 ```bash
-# Run coverage with threshold enforcement
+# Generate coverage report with threshold enforcement
 pnpm coverage
 
 # Expected output:
-# % Coverage report from v8
-# All files | 96.68 | 90.32 | 100 | 96.68 |
-# ✓ Coverage thresholds met (≥80% for all metrics)
+# All files | 96.77 | 90.32 | 100 | 96.77 |
+# ✓ Coverage thresholds met (≥80% required)
 ```
 
-**Verification:**
-- [ ] Coverage ≥80% for statements, branches, functions, lines
-- [ ] No coverage threshold failures
-- [ ] HTML report generated in `coverage/` directory
+Open `coverage/index.html` for detailed coverage analysis.
 
-### Step 3: Development Server for E2E (~keep running)
+### End-to-End Tests (30-45 seconds)
 
 ```bash
-# In separate terminal, ensure dev server is running
-pnpm dev
-
-# Keep this terminal open for E2E tests
-```
-
-### Step 4: E2E Tests (~30-45 seconds)
-
-```bash
-# One-time: Install Playwright browsers (if not done)
+# One-time: Install Playwright browsers
 npx playwright install --with-deps
+
+# Ensure dev server is running in another terminal
+pnpm dev
 
 # Run E2E tests
 pnpm test:e2e
 
 # Expected output:
-# Running 12 tests using 4 workers
-# 12 passed (46.4s)
+# Running 22 tests using 4 workers
+# 22 passed (1.2m)
 ```
 
-**Verification:**
-- [ ] All E2E tests pass
-- [ ] No browser automation errors
-- [ ] Test report available: `npx playwright show-report`
+View test report: `npx playwright show-report`
 
 ## Troubleshooting
 
 ### Port 3000 Already in Use
 
 ```bash
-# Find process using port 3000
-netstat -ano | findstr :3000    # Windows
-lsof -ti:3000                   # macOS/Linux
+# Windows
+netstat -ano | findstr :3000
 
-# Kill process or use different port
+# macOS/Linux
+lsof -ti:3000
+
+# Use alternative port
 pnpm dev -- --port 3001
 ```
 
-### Playwright Browser Installation Issues
+### Playwright Issues
 
 ```bash
-# Clear Playwright cache and reinstall
+# Force reinstall browsers
 npx playwright install --force --with-deps
 
-# For specific browser only
+# Install specific browser only
 npx playwright install chromium --with-deps
+```
+
+### Cache Reset
+
+```bash
+# Clear Next.js cache
+rm -rf .next
+
+# Clear dependencies and reinstall
+rm -rf node_modules
+pnpm install
+
+# Clear test cache
+rm -rf coverage test-results
 ```
 
 ### Test Coverage Below Threshold
 
 ```bash
-# View detailed coverage report
-pnpm coverage
-# Open coverage/index.html in browser to see uncovered lines
-
-# Run tests with coverage in watch mode
+# Run coverage in watch mode
 pnpm vitest --coverage --watch
+
+# Open detailed report
+open coverage/index.html
 ```
 
-### Cache Reset (if strange behavior)
+## Development Scripts
 
-```bash
-# Clear Next.js build cache
-rm -rf .next
-
-# Clear node modules and reinstall
-rm -rf node_modules
-pnpm install
-
-# Clear test cache
-rm -rf coverage
-```
-
-### Development Server Not Loading
-
-```bash
-# Check if port is available
-netstat -an | find "3000"
-
-# Try alternative commands
-npm run dev
-# or
-npx next dev
-
-# Check for Node.js version compatibility
-node --version  # Must be 18+
-```
-
-## Time Estimates
-
-| Task | Estimated Time |
-|------|----------------|
-| Initial setup | 2-3 minutes |
-| Start dev server | 30 seconds |
-| API smoke test | 1 minute |
-| Unit tests | 15-30 seconds |
-| Coverage report | 45-60 seconds |
-| E2E tests | 30-45 seconds |
-| Playwright setup (one-time) | 2-5 minutes |
-
-**Total setup time (first run):** ~8-12 minutes
-**Regular testing cycle:** ~3-5 minutes
+| Command         | Purpose            | Time   |
+| --------------- | ------------------ | ------ |
+| `pnpm dev`      | Development server | 30s    |
+| `pnpm build`    | Production build   | 1-2m   |
+| `pnpm test`     | Unit tests (watch) | 15-30s |
+| `pnpm coverage` | Coverage report    | 45-60s |
+| `pnpm test:e2e` | E2E tests          | 30-45s |
+| `pnpm lint`     | ESLint check       | 10-15s |
+| `pnpm format`   | Code formatting    | 5-10s  |
 
 ## Success Criteria
 
-✅ **Development Ready:**
-- [ ] Dev server running on port 3000
-- [ ] API endpoints responding correctly
-- [ ] Product detail pages loading
-- [ ] No console errors
+### ✅ Development Ready
 
-✅ **Testing Complete:**
-- [ ] All unit tests passing (105 tests)
-- [ ] Coverage ≥80% across all metrics
-- [ ] All E2E tests passing (12 tests)
+- [ ] Dev server running on port 3000
+- [ ] Homepage loads with ML design and product sections
+- [ ] Product detail pages accessible and functional
+- [ ] API endpoints responding correctly
+- [ ] No console errors or TypeScript issues
+
+### ✅ Testing Complete
+
+- [ ] All 105 unit tests passing
+- [ ] Coverage ≥80% across all metrics (statements, branches, functions, lines)
+- [ ] All 22 E2E tests passing
 - [ ] No test failures or timeouts
 
-✅ **Quality Assured:**
+### ✅ Quality Assurance
+
 - [ ] TypeScript compiling without errors
 - [ ] ESLint passing without warnings
-- [ ] Accessibility features working (keyboard nav, screen readers)
-- [ ] Responsive design working on mobile/desktop
+- [ ] Responsive design working (mobile/desktop)
+- [ ] Keyboard navigation functional
+- [ ] Screen reader accessibility working
 
-## Next Steps After Setup
+## Time Estimates
 
-1. **Explore the codebase**: Start with `app/page.tsx` and `app/products/[id]/page.tsx`
-2. **Check API contracts**: Review `docs/api.http` for endpoint examples
-3. **Review test coverage**: Open `coverage/index.html` for detailed analysis
-4. **Test accessibility**: Use screen reader or keyboard-only navigation
-5. **Modify and test**: Make changes and verify tests still pass
+| Phase              | First Run       | Subsequent Runs |
+| ------------------ | --------------- | --------------- |
+| Initial setup      | 2-3 minutes     | -               |
+| Playwright install | 2-5 minutes     | -               |
+| Start dev server   | 30 seconds      | 30 seconds      |
+| Run unit tests     | 30 seconds      | 15 seconds      |
+| Run E2E tests      | 45 seconds      | 30 seconds      |
+| **Total**          | **6-9 minutes** | **2-3 minutes** |
+
+## Next Steps
+
+1. **Explore Codebase**: Start with `src/app/page.tsx` (homepage) and `src/app/product/[id]/page.tsx` (PDP)
+2. **Review Architecture**: Check [decisions.md](./decisions.md) for technical decisions
+3. **Test Coverage**: Run `pnpm coverage` to verify all tests pass and coverage is above 80%
+4. **Accessibility**: Test with screen reader or keyboard-only navigation
+5. **Customize**: Modify content in `content/` directory and verify tests pass
