@@ -290,44 +290,44 @@ export default function Header() {
 
             {/* Navigation Links */}
             <nav className="py-2">
-              <Link 
-                href="#" 
+              <Link
+                href="#"
                 className="block px-4 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-blue-600 border-b border-gray-50"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Categorías
               </Link>
-              <Link 
-                href="#" 
+              <Link
+                href="#"
                 className="block px-4 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-blue-600 border-b border-gray-50"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Ofertas
               </Link>
-              <Link 
-                href="#" 
+              <Link
+                href="#"
                 className="block px-4 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-blue-600 border-b border-gray-50"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Cupones
               </Link>
-              <Link 
-                href="#" 
+              <Link
+                href="#"
                 className="block px-4 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-blue-600 border-b border-gray-50"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Supermercado
               </Link>
-              <Link 
-                href="#" 
+              <Link
+                href="#"
                 className="block px-4 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-blue-600 border-b border-gray-50"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Moda
               </Link>
               <div className="flex items-center justify-between px-4 py-3 border-b border-gray-50">
-                <Link 
-                  href="#" 
+                <Link
+                  href="#"
                   className="text-sm font-medium text-gray-700 hover:text-blue-600"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
@@ -337,32 +337,32 @@ export default function Header() {
                   GRATIS
                 </span>
               </div>
-              <Link 
-                href="#" 
+              <Link
+                href="#"
                 className="block px-4 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-blue-600 border-b border-gray-50"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Vender
               </Link>
-              <Link 
-                href="#" 
+              <Link
+                href="#"
                 className="block px-4 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-blue-600 border-b border-gray-50"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Ayuda
               </Link>
-              
+
               {/* User actions in mobile menu */}
               <div className="mt-2 pt-2 border-t border-gray-200">
-                <Link 
-                  href="#" 
+                <Link
+                  href="#"
                   className="block px-4 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-blue-600 border-b border-gray-50"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Mis compras
                 </Link>
-                <Link 
-                  href="#" 
+                <Link
+                  href="#"
                   className="block px-4 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-blue-600"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >

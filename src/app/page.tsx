@@ -49,7 +49,7 @@ export default async function Home() {
                 priority
                 sizes="100vw"
               />
-              
+
               {/* Desktop Gradient Overlay - Bottom transition */}
               <div className="hidden lg:block absolute bottom-0 left-0 right-0 h-50 bg-gradient-to-b from-transparent via-ml-primary/20 to-ml-bg-sub pointer-events-none"></div>
             </div>
